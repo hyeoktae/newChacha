@@ -30,6 +30,8 @@
 		5246894C22C50AB8002CF751 /* IBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246894B22C50AB8002CF751 /* IBeacon.swift */; };
 		5246894E22C50AC2002CF751 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246894D22C50AC2002CF751 /* Extension.swift */; };
 		5246895022C50B22002CF751 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5246894F22C50B22002CF751 /* GoogleService-Info.plist */; };
+		5291866822C5336D00F301E0 /* Fury.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5291866722C5336D00F301E0 /* Fury.swift */; };
+		5291866A22C5337800F301E0 /* chacha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5291866922C5337800F301E0 /* chacha.swift */; };
 		A1F1C375178F69174706222A /* Pods_chacha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D497AEF4FEDCCB71B4628BA /* Pods_chacha.framework */; };
 		CF3FA7D622C524250043069D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3FA7D522C524250043069D /* CalendarView.swift */; };
 		CF3FA7D822C5243D0043069D /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3FA7D722C5243D0043069D /* MonthView.swift */; };
@@ -64,6 +66,8 @@
 		5246894B22C50AB8002CF751 /* IBeacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBeacon.swift; sourceTree = "<group>"; };
 		5246894D22C50AC2002CF751 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		5246894F22C50B22002CF751 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5291866722C5336D00F301E0 /* Fury.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fury.swift; sourceTree = "<group>"; };
+		5291866922C5337800F301E0 /* chacha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chacha.swift; sourceTree = "<group>"; };
 		7D497AEF4FEDCCB71B4628BA /* Pods_chacha.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chacha.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF3FA7D522C524250043069D /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		CF3FA7D722C5243D0043069D /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				5246894922C50AAE002CF751 /* Data.swift */,
+				5291866722C5336D00F301E0 /* Fury.swift */,
+				5291866922C5337800F301E0 /* chacha.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 				5246893222C50A11002CF751 /* AdminVC.swift in Sources */,
 				5246894022C50A75002CF751 /* AddBeaconDetailView.swift in Sources */,
 				5246893622C50A2D002CF751 /* DetailAdminVC.swift in Sources */,
+				5291866822C5336D00F301E0 /* Fury.swift in Sources */,
 				5246894422C50A8E002CF751 /* CheckView.swift in Sources */,
 				5246894822C50AA5002CF751 /* FireBase.swift in Sources */,
 				5246894622C50A97002CF751 /* DetailCheckView.swift in Sources */,
@@ -351,6 +358,7 @@
 				5246892A22C509DF002CF751 /* MainVC.swift in Sources */,
 				CF3FA7DA22C524570043069D /* WeekdaysView.swift in Sources */,
 				5246893A22C50A51002CF751 /* MainView.swift in Sources */,
+				5291866A22C5337800F301E0 /* chacha.swift in Sources */,
 				523CC80F22C503FB00015784 /* AppDelegate.swift in Sources */,
 				5246893C22C50A5C002CF751 /* RegisterView.swift in Sources */,
 				5246893822C50A41002CF751 /* DetailCheckVC.swift in Sources */,
