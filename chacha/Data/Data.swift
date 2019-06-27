@@ -22,6 +22,7 @@ final class todayCheck {
   
   private var stateArr = [stateOfCheck]()
   private var todayArr = [String]()
+  private var monthStateArr = [String]()
   
   func checkState(completion: @escaping () -> ()) {
     let result = checkTime()

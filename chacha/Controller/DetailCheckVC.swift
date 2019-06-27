@@ -22,6 +22,8 @@ class DetailCheckVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    let shared = Firebase.shared
+    shared.getAttension(date: "", uuid: "")
     
     let guide = view.safeAreaLayoutGuide
     view.addSubview(calenderView)
