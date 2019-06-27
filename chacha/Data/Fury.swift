@@ -7,3 +7,5 @@
 //
 
 import Foundation
+
+private var monthStateArr = [String]()
