@@ -60,9 +60,6 @@ final class todayCheck {
     let today: String = dateFormatter.string(from: Date())
     let nowTime: String = timeFormatter.string(from: Date())
     
-    print("기준 시간: ", safeDateString)
-    print("지금 시간: ", nowTime)
-    
     if nowTime <= safeDateString {
       print("출석")
       return (.check, today)

@@ -38,7 +38,11 @@ final class MainVC: UIViewController {
   // appdelegate 에서 넘어오는 uuid값의 유무 확인 후 nil이면 present
   private func firstRunApp() {
     guard let myUUID = myUUID else { return }
-    shared.getAdminData(uuid: myUUID)
+    shared.getAdminData(uuid: myUUID) {
+      print("firstRunApp 에서: ", $0)
+      guard $0 == "관리자" else { return }
+      self.present(self.adminVC, animated: true)
+    }
   }
   
   private func setupMainView() {

@@ -25,25 +25,37 @@ final class Firebase {
   }
   
   // admin 정보 가져오기
-  func getAdminData(uuid: String) {
+  func getAdminData(uuid: String, completion: @escaping (String) -> ()) {
     let docRef = db.collection("admin").document(uuid)
+    var result = ""
     
     docRef.getDocument { (document, error) in
+      print("document: ", document?.data())
+      guard error == nil else { print("error", error?.localizedDescription); return }
+      
       if let document = document, document.exists {
+        
         let dataDic = document.data() as! [String: String]
+        print("실행", dataDic)
+        
         let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-        for i in dataDic["uuid"]! {
-          String(i) == uuid
+        
+        if uuid == dataDic["uuid"] {
+          print("관리자입니다!@#!@#.")
+          result = "관리자"
+        } else {
+          print("학생.")
+          result = "학생"
         }
+        completion(result)
         print("Document data: \(dataDescription)")
       } else {
         print("Document does not exist")
+        result = "학생"
+        completion(result)
       }
     }
-    
-    
-    
-    
+    print("[Log] : ", result)
   }
   
   // 오늘 지각인지 아닌지 검사
@@ -147,5 +159,4 @@ final class Firebase {
       completion(.success(true))
     }
   }
-  
 }
