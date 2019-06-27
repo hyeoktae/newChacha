@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Chacha.xcodeproj">
+      location = "self:chacha.xcodeproj">
    </FileRef>
 </Workspace>

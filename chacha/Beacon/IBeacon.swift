@@ -78,6 +78,8 @@ extension AppDelegate: CLLocationManagerDelegate {
     }
   }
   
+  
+  
   // 비콘 모니터링 시작
   func monitorBeacons() {
     if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
@@ -102,7 +104,10 @@ extension AppDelegate: CLLocationManagerDelegate {
       // 비콘의 탐지 범위 내
       locationManager.startRangingBeacons(in: beaconRegion)
       // 아래에 출첵 시키면 됨
-      ()
+      guard (UserDefaults.standard.string(forKey: "uuid") != nil) else { return }
+      todayCheck.shared.checkState() {
+        print("출첵 성공")
+      }
     } else if state == .outside {
       // 비콘의 탐지 범위 외
       locationManager.stopRangingBeacons(in: beaconRegion)
@@ -115,7 +120,8 @@ extension AppDelegate: CLLocationManagerDelegate {
   // 비콘 거리 감지하는
   func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
     IBeacon.shared.nearBeacons = beacons
-    print("beacon 탐지중")
+    //    print("beacon 탐지중")
+    
     //    print("@@@비콘의 범위 탐지함@@@", IBeacon.shared.nearBeacons)
     //    for beacon in beacons {
     //      if beacon.proximityUUID == uuid {

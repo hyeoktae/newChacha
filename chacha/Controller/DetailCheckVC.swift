@@ -9,16 +9,16 @@
 import UIKit
 
 class DetailCheckVC: UIViewController {
-
+  
   let label = UILabel()
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      
-      view.addSubview(label)
-      label.text = "DetailCheckVC"
-      label.frame = view.frame
-
-    }
-
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    view.addSubview(label)
+    label.text = "DetailCheckVC"
+    label.frame = view.frame
+    
+  }
+  
 }

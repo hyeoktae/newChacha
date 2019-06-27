@@ -83,7 +83,7 @@ final class AddBeaconDetailView: UIView {
   // submit 하기전 textfield들 값 확인
   @objc private func didTapsubmitBtn(_ sender: UIButton) {
     guard nameTextField.text != "", locationTextField.text != "" else {
-      // alert 설정으로 바꾸던가 말던가 
+      // alert 설정으로 바꾸던가 말던가
       print("textField 값 비었다.")
       return }
     delegate?.submit(name: nameTextField.text!, location: locationTextField.text!)
