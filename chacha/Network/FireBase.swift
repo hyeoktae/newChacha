@@ -58,7 +58,8 @@ final class Firebase {
       stateString = "결석"
     }
     
-    db.collection("attend").document(today).collection(uuid).document().setData(([
+    let documentText = String(today.dropLast(3))
+    db.collection("attend").document(documentText).collection(uuid).document(today).setData(([
       "uuid": uuid,
       "name": name,
       "School": school,
@@ -83,7 +84,6 @@ final class Firebase {
         print("Document successfully written!")
       }
     }
-    
   }
   
   // 비콘 추가 3단 비동기 토나와 ㅅㅂ 더좋은 방법이 있을꺼야 찾아보던가
