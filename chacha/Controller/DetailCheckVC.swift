@@ -8,17 +8,32 @@
 
 import UIKit
 
+enum MyTheme {
+  case light
+}
+
 class DetailCheckVC: UIViewController {
   
-  let label = UILabel()
+  let calenderView: CalendarView = {
+    let v = CalendarView(theme: MyTheme.light)
+    v.translatesAutoresizingMaskIntoConstraints = false
+    return v
+  }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    view.addSubview(label)
-    label.text = "DetailCheckVC"
-    label.frame = view.frame
-    
+    let guide = view.safeAreaLayoutGuide
+    view.addSubview(calenderView)
+    calenderView.topAnchor.constraint(equalTo: guide.topAnchor, constant: 10).isActive = true
+    calenderView.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 12).isActive = true
+    calenderView.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -12).isActive = true
+    calenderView.heightAnchor.constraint(equalToConstant: 500).isActive = true
   }
   
+  override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews()
+    calenderView.myCollectionView.collectionViewLayout.invalidateLayout()
+  }
 }
+

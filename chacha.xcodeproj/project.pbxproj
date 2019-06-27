@@ -31,6 +31,9 @@
 		5246894E22C50AC2002CF751 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246894D22C50AC2002CF751 /* Extension.swift */; };
 		5246895022C50B22002CF751 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5246894F22C50B22002CF751 /* GoogleService-Info.plist */; };
 		A1F1C375178F69174706222A /* Pods_chacha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D497AEF4FEDCCB71B4628BA /* Pods_chacha.framework */; };
+		CF3FA7D622C524250043069D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3FA7D522C524250043069D /* CalendarView.swift */; };
+		CF3FA7D822C5243D0043069D /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3FA7D722C5243D0043069D /* MonthView.swift */; };
+		CF3FA7DA22C524570043069D /* WeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3FA7D922C524570043069D /* WeekdaysView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		5246894D22C50AC2002CF751 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		5246894F22C50B22002CF751 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D497AEF4FEDCCB71B4628BA /* Pods_chacha.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chacha.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF3FA7D522C524250043069D /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		CF3FA7D722C5243D0043069D /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		CF3FA7D922C524570043069D /* WeekdaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,7 @@
 			children = (
 				523CC80E22C503FB00015784 /* AppDelegate.swift */,
 				5246892822C509CD002CF751 /* Extension */,
+				CF3FA7C522C51B090043069D /* Calendar */,
 				5246892722C509C7002CF751 /* Beacon */,
 				5246892622C509C1002CF751 /* Cell */,
 				5246892522C509BB002CF751 /* Data */,
@@ -196,6 +203,16 @@
 				1137CF91CD80B422CC1AA58E /* Pods-chacha.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CF3FA7C522C51B090043069D /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				CF3FA7D522C524250043069D /* CalendarView.swift */,
+				CF3FA7D722C5243D0043069D /* MonthView.swift */,
+				CF3FA7D922C524570043069D /* WeekdaysView.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,10 +343,13 @@
 				5246894622C50A97002CF751 /* DetailCheckView.swift in Sources */,
 				5246892C22C509EB002CF751 /* RegisterVC.swift in Sources */,
 				5246892E22C509F7002CF751 /* AddBeaconVC.swift in Sources */,
+				CF3FA7D622C524250043069D /* CalendarView.swift in Sources */,
 				5246894E22C50AC2002CF751 /* Extension.swift in Sources */,
 				5246893022C50A07002CF751 /* AddBeaconDetailVC.swift in Sources */,
+				CF3FA7D822C5243D0043069D /* MonthView.swift in Sources */,
 				5246893E22C50A6A002CF751 /* AddBeaconView.swift in Sources */,
 				5246892A22C509DF002CF751 /* MainVC.swift in Sources */,
+				CF3FA7DA22C524570043069D /* WeekdaysView.swift in Sources */,
 				5246893A22C50A51002CF751 /* MainView.swift in Sources */,
 				523CC80F22C503FB00015784 /* AppDelegate.swift in Sources */,
 				5246893C22C50A5C002CF751 /* RegisterView.swift in Sources */,
