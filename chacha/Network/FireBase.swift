@@ -24,6 +24,24 @@ final class Firebase {
     db = Firestore.firestore()
   }
   
+  // 출결 정보 가져오기
+  func getAttension(date: String, uuid: String) {
+    let docRef = db.collection("attend")
+                   .document("2019-06")
+                   .collection("3D3F657B-00A1-43B3-8524-DDAAA0D28B54")
+    
+    print("[Log] hi")
+    docRef.getDocuments { (querySnapshot, error) in
+      if let error = error {
+        print("Error getting documents: \(error.localizedDescription)")
+      } else {
+        for document in querySnapshot!.documents {
+          print(document.documentID)
+        }
+      }
+    }
+  }
+  
   // admin 정보 가져오기
   func getAdminData(uuid: String) {
     let docRef = db.collection("admin").document(uuid)
@@ -40,10 +58,6 @@ final class Firebase {
         print("Document does not exist")
       }
     }
-    
-    
-    
-    
   }
   
   // 오늘 지각인지 아닌지 검사
