@@ -43,7 +43,6 @@
 #include "Firestore/core/include/firebase/firestore/firestore_errors.h"
 #include "Firestore/core/include/firebase/firestore/geo_point.h"
 #include "Firestore/core/src/firebase/firestore/core/filter.h"
-#include "Firestore/core/src/firebase/firestore/core/query.h"
 #include "Firestore/core/src/firebase/firestore/model/database_id.h"
 #include "Firestore/core/src/firebase/firestore/model/document_key.h"
 #include "Firestore/core/src/firebase/firestore/model/field_mask.h"
@@ -52,7 +51,6 @@
 #include "Firestore/core/src/firebase/firestore/model/precondition.h"
 #include "Firestore/core/src/firebase/firestore/model/resource_path.h"
 #include "Firestore/core/src/firebase/firestore/model/transform_operations.h"
-#include "Firestore/core/src/firebase/firestore/nanopb/nanopb_util.h"
 #include "Firestore/core/src/firebase/firestore/remote/existence_filter.h"
 #include "Firestore/core/src/firebase/firestore/remote/watch_change.h"
 #include "Firestore/core/src/firebase/firestore/util/hard_assert.h"
@@ -66,7 +64,6 @@ using firebase::Timestamp;
 using firebase::firestore::FirestoreErrorCode;
 using firebase::firestore::GeoPoint;
 using firebase::firestore::core::Filter;
-using firebase::firestore::core::Query;
 using firebase::firestore::model::ArrayTransform;
 using firebase::firestore::model::DatabaseId;
 using firebase::firestore::model::DocumentKey;
@@ -81,7 +78,6 @@ using firebase::firestore::model::ServerTimestampTransform;
 using firebase::firestore::model::SnapshotVersion;
 using firebase::firestore::model::TargetId;
 using firebase::firestore::model::TransformOperation;
-using firebase::firestore::nanopb::MakeByteString;
 using firebase::firestore::remote::DocumentWatchChange;
 using firebase::firestore::remote::ExistenceFilter;
 using firebase::firestore::remote::ExistenceFilterWatchChange;
@@ -264,14 +260,16 @@ NS_ASSUME_NONNULL_BEGIN
 
     case GCFSValue_ValueType_OneOfCase_TimestampValue: {
       Timestamp value = [self decodedTimestamp:valueProto.timestampValue];
-      return FieldValue::FromTimestamp(value).Wrap();
+      return [FSTTimestampValue
+          timestampValue:[FIRTimestamp timestampWithSeconds:value.seconds()
+                                                nanoseconds:value.nanoseconds()]];
     }
 
     case GCFSValue_ValueType_OneOfCase_GeoPointValue:
       return FieldValue::FromGeoPoint([self decodedGeoPoint:valueProto.geoPointValue]).Wrap();
 
     case GCFSValue_ValueType_OneOfCase_BytesValue:
-      return FieldValue::FromBlob(MakeByteString(valueProto.bytesValue)).Wrap();
+      return [FSTBlobValue blobValue:valueProto.bytesValue];
 
     case GCFSValue_ValueType_OneOfCase_ReferenceValue:
       return [self decodedReferenceValue:valueProto.referenceValue];
@@ -803,7 +801,7 @@ NS_ASSUME_NONNULL_BEGIN
     [queryTarget.structuredQuery.orderByArray addObjectsFromArray:orders];
   }
 
-  if (query.limit != Query::kNoLimit) {
+  if (query.limit != NSNotFound) {
     queryTarget.structuredQuery.limit.value = (int32_t)query.limit;
   }
 
@@ -850,7 +848,7 @@ NS_ASSUME_NONNULL_BEGIN
     orderBy = @[];
   }
 
-  int32_t limit = Query::kNoLimit;
+  NSInteger limit = NSNotFound;
   if (query.hasLimit) {
     limit = query.limit.value;
   }

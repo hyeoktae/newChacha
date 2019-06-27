@@ -20,7 +20,7 @@ class AdminVC: UIViewController {
   
   private func setupAdminView() {
     view.addSubview(adminView)
-    
+
     let guide = view.safeAreaLayoutGuide
     adminView.translatesAutoresizingMaskIntoConstraints = false
     adminView.centerYAnchor.constraint(equalTo: guide.centerYAnchor).isActive = true
@@ -40,6 +40,6 @@ extension AdminVC: AdminViewDelegate {
   func getAdminTableView() {
     present(DetailAdminVC(), animated: true)
   }
-  
+
   
 }

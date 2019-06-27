@@ -27,7 +27,6 @@
 #import "Firestore/Source/Core/FSTQuery.h"
 #import "Firestore/Source/Model/FSTMutation.h"
 
-#include "Firestore/core/src/firebase/firestore/api/collection_reference.h"
 #include "Firestore/core/src/firebase/firestore/api/source.h"
 #include "Firestore/core/src/firebase/firestore/core/user_data.h"
 #include "Firestore/core/src/firebase/firestore/core/view_snapshot.h"
@@ -80,32 +79,34 @@ const std::string& DocumentReference::document_id() const {
   return key_.path().last_segment();
 }
 
-CollectionReference DocumentReference::Parent() const {
-  return CollectionReference{key_.path().PopLast(), firestore_};
-}
+// TODO(varconst) uncomment when core API CollectionReference is implemented.
+// CollectionReference DocumentReference::Parent() const {
+//   return CollectionReference{firestore_, key_.path().PopLast()};
+// }
 
 std::string DocumentReference::Path() const {
   return key_.path().CanonicalString();
 }
 
-CollectionReference DocumentReference::GetCollectionReference(
-    const std::string& collection_path) const {
-  ResourcePath sub_path = ResourcePath::FromString(collection_path);
-  ResourcePath path = key_.path().Append(sub_path);
-  return CollectionReference{path, firestore_};
-}
+// TODO(varconst) uncomment when core API CollectionReference is implemented.
+// CollectionReference DocumentReference::GetCollectionReference(
+//     const std::string& collection_path) const {
+//   ResourcePath sub_path = ResourcePath::FromString(collection_path);
+//   ResourcePath path = key_.path().Append(sub_path);
+//   return CollectionReference{firestore_, path};
+// }
 
-void DocumentReference::SetData(core::ParsedSetData&& set_data,
+void DocumentReference::SetData(core::ParsedSetData&& setData,
                                 util::StatusCallback callback) {
-  [firestore_->client() writeMutations:std::move(set_data).ToMutations(
-                                           key(), Precondition::None())
-                              callback:std::move(callback)];
+  [firestore_->client()
+      writeMutations:std::move(setData).ToMutations(key(), Precondition::None())
+            callback:std::move(callback)];
 }
 
-void DocumentReference::UpdateData(core::ParsedUpdateData&& update_data,
+void DocumentReference::UpdateData(core::ParsedUpdateData&& updateData,
                                    util::StatusCallback callback) {
-  [firestore_->client()
-      writeMutations:std::move(update_data)
+  return [firestore_->client()
+      writeMutations:std::move(updateData)
                          .ToMutations(key(), Precondition::Exists(true))
             callback:std::move(callback)];
 }

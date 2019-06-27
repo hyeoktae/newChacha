@@ -26,6 +26,7 @@
 #include "Firestore/core/src/firebase/firestore/model/field_value_options.h"
 
 @class FIRTimestamp;
+@class FIRGeoPoint;
 
 namespace model = firebase::firestore::model;
 
@@ -104,6 +105,13 @@ typedef NS_ENUM(NSInteger, FSTTypeOrder) {
 @end
 
 /**
+ * A timestamp value stored in Firestore.
+ */
+@interface FSTTimestampValue : FSTFieldValue <FIRTimestamp *>
++ (instancetype)timestampValue:(FIRTimestamp *)value;
+@end
+
+/**
  * Represents a locally-applied Server Timestamp.
  *
  * Notes:
@@ -112,16 +120,23 @@ typedef NS_ENUM(NSInteger, FSTTypeOrder) {
  *   Therefore they do not need to be parsed or serialized.
  * - When evaluated locally (e.g. via FSTDocumentSnapshot data), they by default evaluate to NSNull.
  *   This behavior can be configured by passing custom FieldValueOptions to `valueWithOptions:`.
- * - They sort after all Timestamp values. With respect to other FSTServerTimestampValues, they
+ * - They sort after all FSTTimestampValues. With respect to other FSTServerTimestampValues, they
  *   sort by their localWriteTime.
  */
 @interface FSTServerTimestampValue : FSTFieldValue <id>
-+ (instancetype)serverTimestampValueWithLocalWriteTime:(const firebase::Timestamp &)localWriteTime
++ (instancetype)serverTimestampValueWithLocalWriteTime:(FIRTimestamp *)localWriteTime
                                          previousValue:(nullable FSTFieldValue *)previousValue;
 
-@property(nonatomic, assign, readonly) const firebase::Timestamp &localWriteTime;
+@property(nonatomic, strong, readonly) FIRTimestamp *localWriteTime;
 @property(nonatomic, strong, readonly, nullable) FSTFieldValue *previousValue;
 
+@end
+
+/**
+ * A blob value stored in Firestore.
+ */
+@interface FSTBlobValue : FSTFieldValue <NSData *>
++ (instancetype)blobValue:(NSData *)value;
 @end
 
 /**

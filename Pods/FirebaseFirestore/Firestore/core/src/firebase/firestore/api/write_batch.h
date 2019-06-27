@@ -56,10 +56,6 @@ class WriteBatch {
 
   void Commit(util::StatusCallback callback);
 
-  const std::shared_ptr<Firestore>& firestore() const {
-    return firestore_;
-  }
-
  private:
   std::shared_ptr<Firestore> firestore_;
   std::vector<FSTMutation*> mutations_;

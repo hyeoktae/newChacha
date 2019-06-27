@@ -16,7 +16,6 @@
 
 #import "Firestore/Source/Core/FSTQuery.h"
 
-#include <limits>
 #include <memory>
 #include <string>
 #include <utility>
@@ -28,7 +27,6 @@
 
 #include "Firestore/core/src/firebase/firestore/api/input_validation.h"
 #include "Firestore/core/src/firebase/firestore/core/filter.h"
-#include "Firestore/core/src/firebase/firestore/core/query.h"
 #include "Firestore/core/src/firebase/firestore/model/document_key.h"
 #include "Firestore/core/src/firebase/firestore/model/field_path.h"
 #include "Firestore/core/src/firebase/firestore/model/field_value.h"
@@ -43,7 +41,6 @@ namespace objc = firebase::firestore::objc;
 namespace util = firebase::firestore::util;
 using firebase::firestore::api::ThrowInvalidArgument;
 using firebase::firestore::core::Filter;
-using firebase::firestore::core::Query;
 using firebase::firestore::model::DocumentComparator;
 using firebase::firestore::model::DocumentKey;
 using firebase::firestore::model::FieldPath;
@@ -560,7 +557,7 @@ NSString *FSTStringFromQueryRelationOperator(Filter::Operator filterOperator) {
                         collectionGroup:collectionGroup
                                filterBy:@[]
                                 orderBy:@[]
-                                  limit:Query::kNoLimit
+                                  limit:NSNotFound
                                 startAt:nil
                                   endAt:nil];
 }
@@ -569,7 +566,7 @@ NSString *FSTStringFromQueryRelationOperator(Filter::Operator filterOperator) {
              collectionGroup:(nullable NSString *)collectionGroup
                     filterBy:(NSArray<FSTFilter *> *)filters
                      orderBy:(NSArray<FSTSortOrder *> *)sortOrders
-                       limit:(int32_t)limit
+                       limit:(NSInteger)limit
                      startAt:(nullable FSTBound *)startAtBound
                        endAt:(nullable FSTBound *)endAtBound {
   if (self = [super init]) {
@@ -692,7 +689,7 @@ NSString *FSTStringFromQueryRelationOperator(Filter::Operator filterOperator) {
                                   endAt:self.endAt];
 }
 
-- (instancetype)queryBySettingLimit:(int32_t)limit {
+- (instancetype)queryBySettingLimit:(NSInteger)limit {
   return [[FSTQuery alloc] initWithPath:self.path
                         collectionGroup:self.collectionGroup
                                filterBy:self.filters
@@ -821,7 +818,7 @@ NSString *FSTStringFromQueryRelationOperator(Filter::Operator filterOperator) {
   }
 
   // Add limit.
-  if (self.limit != Query::kNoLimit) {
+  if (self.limit != NSNotFound) {
     [canonicalID appendFormat:@"|l:%ld", (long)self.limit];
   }
 

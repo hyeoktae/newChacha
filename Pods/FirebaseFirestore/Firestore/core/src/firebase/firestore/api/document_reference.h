@@ -42,7 +42,6 @@ class ParsedUpdateData;
 
 namespace api {
 
-class CollectionReference;
 class Firestore;
 enum class Source;
 
@@ -67,12 +66,14 @@ class DocumentReference {
 
   const std::string& document_id() const;
 
-  CollectionReference Parent() const;
+  // TODO(varconst) uncomment when core API CollectionReference is implemented.
+  // CollectionReference Parent() const;
 
   std::string Path() const;
 
-  CollectionReference GetCollectionReference(
-      const std::string& collection_path) const;
+  // TODO(varconst) uncomment when core API CollectionReference is implemented.
+  // CollectionReference GetCollectionReference(
+  //     const std::string& collection_path) const;
 
   void SetData(core::ParsedSetData&& setData, util::StatusCallback callback);
 

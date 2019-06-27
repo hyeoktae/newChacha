@@ -24,57 +24,13 @@ final class Firebase {
     db = Firestore.firestore()
   }
   
-  // admin 정보 가져오기
-  func getAdminData(uuid: String) {
-    let docRef = db.collection("admin").document(uuid)
-    
-    docRef.getDocument { (document, error) in
-      if let document = document, document.exists {
-        let dataDic = document.data() as! [String: String]
-        let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-        for i in dataDic["uuid"]! {
-          String(i) == uuid
-        }
-        print("Document data: \(dataDescription)")
-      } else {
-        print("Document does not exist")
-      }
-    }
-    
-    
-    
-    
-  }
-  
-  // 오늘 지각인지 아닌지 검사
-  func registerCheck(uuid: String, name: String, school: String, state: stateOfCheck, today: String, completion: @escaping () -> ()) {
-    var stateString = String()
-    switch state {
-    case .check:
-      stateString = "출석"
-    case .late:
-      stateString = "지각"
-    case .none:
-      stateString = "결석"
-    }
-    
-    db.collection("attend").document(today).collection(uuid).document().setData(([
-      "uuid": uuid,
-      "name": name,
-      "School": school,
-      "state": stateString
-      ])) {
-        guard $0 != nil else { return }
-        completion()
-    }
-  }
-  
   // Student 추가
-  func addStudent(name: String, uuid: String, address: String?, school: String) {
+  func addStudent(name: String, uuid: String, home: String?, school: String ) {
+    let docRef = db.collection("students").document(uuid)
+    
     db.collection("student").document(uuid).setData([
       "name": name,
       "uuid": uuid,
-      "address": address ?? "",
       "school": school
     ]) { err in
       if let err = err {

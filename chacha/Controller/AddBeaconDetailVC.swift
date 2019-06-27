@@ -65,17 +65,17 @@ extension AddBeaconDetailVC: AddBeaconDetailViewDelegate {
     addBeaconDetailView.reset()
     presentingViewController?.dismiss(animated: true)
     
-    //    Firebase.shared.getBeacons {
-    //      switch $0 {
-    //      case .failure(let err):
-    //        print("error: ", err.localizedDescription)
-    //      case .success(_):
-    //        DispatchQueue.main.async {
-    //          print("success")
-    //          self.presentingViewController?.dismiss(animated: true)
-    //        }
-    //      }
-    //    }
+//    Firebase.shared.getBeacons {
+//      switch $0 {
+//      case .failure(let err):
+//        print("error: ", err.localizedDescription)
+//      case .success(_):
+//        DispatchQueue.main.async {
+//          print("success")
+//          self.presentingViewController?.dismiss(animated: true)
+//        }
+//      }
+//    }
     
   }
   

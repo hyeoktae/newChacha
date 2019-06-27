@@ -25,7 +25,6 @@
 #import "Firestore/Source/Core/FSTQuery.h"
 #import "Firestore/Source/Local/FSTLevelDB.h"
 
-#include "Firestore/core/src/firebase/firestore/api/collection_reference.h"
 #include "Firestore/core/src/firebase/firestore/api/document_reference.h"
 #include "Firestore/core/src/firebase/firestore/api/settings.h"
 #include "Firestore/core/src/firebase/firestore/api/write_batch.h"
@@ -99,11 +98,13 @@ void Firestore::set_user_executor(
   user_executor_ = std::move(user_executor);
 }
 
-CollectionReference Firestore::GetCollection(
+FIRCollectionReference* Firestore::GetCollection(
     absl::string_view collection_path) {
   EnsureClientConfigured();
   ResourcePath path = ResourcePath::FromString(collection_path);
-  return CollectionReference{std::move(path), shared_from_this()};
+  return [FIRCollectionReference
+      referenceWithPath:path
+              firestore:[FIRFirestore recoverFromFirestore:shared_from_this()]];
 }
 
 DocumentReference Firestore::GetDocument(absl::string_view document_path) {

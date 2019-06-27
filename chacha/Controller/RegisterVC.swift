@@ -10,20 +10,20 @@ import UIKit
 
 class RegisterVC: UIViewController {
   
-  var myUUID: String?
-  let shared = Firebase.shared
-  
   let registerView: RegisterView = {
     let view = RegisterView()
+    view.enrollButton.addTarget(self, action: #selector(enrollButtonDidTapped), for: .touchUpInside)
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
   
+  let shared = Firebase.shared
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     registerView.delegate = self
     setupRegisterView()
+    
   }
   
   private func setupRegisterView() {
@@ -36,51 +36,30 @@ class RegisterVC: UIViewController {
     registerView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
   }
   
-  private func alert(title: String, message: String) {
-    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    let okAction = UIAlertAction(title: "확인", style: .default)
-    let cancelAction = UIAlertAction(title: "취소", style: .destructive)
-    
-    alertController.addAction(okAction)
-    alertController.addAction(cancelAction)
-    
-    present(alertController, animated: true)
+  @objc private func enrollButtonDidTapped() {
+    let mainVC = MainVC()
+    if registerView.nameTextField.text!.isEmpty {
+      // nameTextField 비어 있을 경우
+      
+    } else if registerView.schoolTextField.text!.isEmpty {
+      // schoolTextField 비어 있을 경우
+      
+    } else if registerView.addressTextField.text!.isEmpty {
+      // addressTextField 비어 있을 경우
+      
+    } else {
+      present(mainVC, animated: true)
+    }
   }
   
 }
 
 extension RegisterVC: RegisterViewDelegate {
-  func downKeyboard() {
-    resignFirstResponder()
-  }
-  
   // student 등록 / enroll btn 클릭
   func registerStudent() {
-    
-    if registerView.nameTextField.text!.isEmpty {
-      // nameTextField 비어 있을 경우
-      alert(title: "이름을 입력해주세요.", message: "")
-    } else if registerView.schoolTextField.text!.isEmpty {
-      // schoolTextField 비어 있을 경우
-      alert(title: "스쿨을 입력해주세요.", message: "")
-    } else if registerView.addressTextField.text!.isEmpty {
-      // addressTextField 비어 있을 경우
-      alert(title: "주소를 입력해주세요.", message: "")
-    } else {
-      myUUID = UUID.init().uuidString
-      
-      UserDefaults.standard.set(myUUID, forKey: "uuid")
-      
-      let uuid = UserDefaults.standard.string(forKey: "uuid")!
-      let name = registerView.nameTextField.text!
-      let address = registerView.addressTextField.text
-      let school = registerView.schoolTextField.text!
-      
-      UserDefaults.standard.set(name, forKey: "name")
-      UserDefaults.standard.set(school, forKey: "school")
-      
-      shared.addStudent(name: name, uuid: uuid, address: address, school: school)
-      dismiss(animated: true, completion: nil)
-    }
+    print("didTapEnrollBtnDelegate")
+//    shared.addStudent(name: registerView.nameTextField, uuid: uuid, home: registerView.home, school: registerView.schoolTextField)
+    // 나중에 이부분 수정해야함 현재는 임의로 dismiss
+    dismiss(animated: true)
   }
 }

@@ -9,14 +9,14 @@
 import UIKit
 
 class CheckVC: UIViewController {
-  
+
   let checkView = CheckView()
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    setupCheckView()
-  }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+      setupCheckView()
+    }
   
   private func setupCheckView() {
     view.addSubview(checkView)

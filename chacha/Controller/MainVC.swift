@@ -11,9 +11,8 @@ import CoreLocation
 import CoreBluetooth
 
 final class MainVC: UIViewController {
-  let shared = Firebase.shared
   // private 안됨 appdelegate에서 사용
-  var myUUID = UserDefaults.standard.string(forKey: "uuid")
+  var myUUID: String?
   
   private let mainView = MainView()
   
@@ -24,7 +23,6 @@ final class MainVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     view.backgroundColor = .white
     mainView.delegate = self
     setupMainView()
@@ -32,13 +30,14 @@ final class MainVC: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     // 이부분 임의로 사용하기 위해 주석처리
-    firstRunApp()
+//    firstRunApp()
   }
   
   // appdelegate 에서 넘어오는 uuid값의 유무 확인 후 nil이면 present
   private func firstRunApp() {
-    guard let myUUID = myUUID else { return }
-    shared.getAdminData(uuid: myUUID)
+    guard myUUID == nil else { return }
+    print("uuid없으니까 registerVC 띄움")
+    present(registerVC, animated: true)
   }
   
   private func setupMainView() {

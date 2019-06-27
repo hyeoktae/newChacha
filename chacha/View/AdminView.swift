@@ -56,7 +56,7 @@ class AdminView: UIView {
     return button
   }()
   
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     
@@ -92,7 +92,7 @@ class AdminView: UIView {
     beaconButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     beaconButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     beaconButton.heightAnchor.constraint(equalTo: schoolButton.heightAnchor).isActive = true
-    
+  
   }
   
   @objc private func didTapAdminButton(_ sender: UIButton) {

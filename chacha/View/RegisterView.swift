@@ -10,7 +10,6 @@ import UIKit
 protocol RegisterViewDelegate: class {
   //student 등록 시 실행할 메소드
   func registerStudent()
-  func downKeyboard()
 }
 
 final class RegisterView: UIView {
@@ -41,7 +40,6 @@ final class RegisterView: UIView {
     textField.placeholder = "이름"
     textField.borderStyle = .roundedRect
     textField.translatesAutoresizingMaskIntoConstraints = false
-    textField.addTarget(self, action: #selector(downKeyboard(_:)), for: .editingDidEndOnExit)
     return textField
   }()
   
@@ -59,7 +57,6 @@ final class RegisterView: UIView {
     textField.placeholder = "스쿨"
     textField.borderStyle = .roundedRect
     textField.translatesAutoresizingMaskIntoConstraints = false
-    textField.addTarget(self, action: #selector(downKeyboard(_:)), for: .editingDidEndOnExit)
     return textField
   }()
   
@@ -77,7 +74,6 @@ final class RegisterView: UIView {
     textField.placeholder = "주소"
     textField.borderStyle = .roundedRect
     textField.translatesAutoresizingMaskIntoConstraints = false
-    textField.addTarget(self, action: #selector(downKeyboard(_:)), for: .editingDidEndOnExit)
     return textField
   }()
   
@@ -97,10 +93,6 @@ final class RegisterView: UIView {
     super.init(frame: frame)
     
     setupAddSubviews()
-  }
-  
-  @objc private func downKeyboard(_ sender: UITextField) {
-    delegate?.downKeyboard()
   }
   
   override func layoutSubviews() {

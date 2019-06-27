@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_chachaVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_chachaVersionString[];
+FOUNDATION_EXPORT double Pods_ChachaVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_ChachaVersionString[];
 
