@@ -191,7 +191,6 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
       if indexPath.row < todayCount + todaysDate {
         let monthIndex = String(format: "%02d", currentMonthIndex)
         let dayIndex = String(format: "%02d", Int(cell.lbl.text!)!)
-        
         if shared.monthStateArr.keys.contains("\(currentYear)-\(monthIndex)") {
           if (shared.monthStateArr["\(currentYear)-\(monthIndex)"]?.keys.contains(dayIndex))! {
             let state = shared.monthStateArr["\(currentYear)-\(monthIndex)"]?[dayIndex]

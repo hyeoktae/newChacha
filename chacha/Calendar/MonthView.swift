@@ -75,16 +75,9 @@ class MonthView: UIView {
       }
     }
     
-//    var currentMonthString = ""
-//    if String(currentMonthIndex).count == 1 {
-//      currentMonthString = "0\(currentMonthIndex + 1)"
-//    } else {
-//      currentMonthString = "\(currentMonthIndex + 1)"
-//    }
-    delegate?.collectionReloadData()
     lblName.text = "\(monthsArr[currentMonthIndex]) \(currentYear)"
     delegate?.didChangeMonth(monthIndex: currentMonthIndex, year: currentYear)
-    
+    delegate?.collectionReloadData()
   }
   
   func setupViews() {
