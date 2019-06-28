@@ -357,8 +357,8 @@ class dateCVCell: UICollectionViewCell {
   func setupViews() {
     addSubview(lbl)
     lbl.topAnchor.constraint(equalTo: topAnchor).isActive = true
-    lbl.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-    lbl.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+    lbl.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+    lbl.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     lbl.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
   }
   

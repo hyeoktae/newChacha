@@ -8,4 +8,8 @@
 
 import Foundation
 
-private var monthStateArr = [String]()
+final class Fury {
+  static let shared = Fury()
+  
+  var monthStateArr = [String: [String]]()
+}
