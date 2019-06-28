@@ -48,7 +48,7 @@ class TopCheckView: UIView {
     let label = UILabel()
     label.text = "\(myName)님 안녕하세요."
     label.textColor = .white
-    label.font = UIFont.systemFont(ofSize: 40, weight: .light)
+    label.font = UIFont.systemFont(ofSize: 40, weight: .ultraLight)
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
@@ -89,7 +89,7 @@ class TopCheckView: UIView {
     view.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     
     
-    schoolLabel.topAnchor.constraint(equalTo: topAnchor, constant: 70).isActive = true
+    schoolLabel.topAnchor.constraint(equalTo: topAnchor, constant: 120).isActive = true
     schoolLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
     schoolLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
     schoolLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true

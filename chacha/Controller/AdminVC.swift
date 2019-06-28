@@ -11,7 +11,6 @@ import UIKit
 class AdminVC: UIViewController {
   
   let adminView = AdminView()
-  let detailAdminVC = DetailAdminVC()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,29 +36,31 @@ class AdminVC: UIViewController {
 
 extension AdminVC: AdminViewDelegate {
   func didTapStudentList() {
-    Firebase.shared.getStudentList(){
-      let data = $0.filter { $0.isAdmin == "0" }
-      self.detailAdminVC.cellArr = data
-      self.present(self.detailAdminVC, animated: true)
-    }
+    
   }
   
   func moveToAddBeaconVC() {
     present(AddBeaconVC(), animated: true)
   }
   
-  func getAdminTableView() {
-    Firebase.shared.getStudentList(){
-      let data = $0.filter { $0.isAdmin == "0" }
-      self.detailAdminVC.cellArr = data
-      self.detailAdminVC.adminState = true
-      self.present(self.detailAdminVC, animated: true)
+  func getAdminTableView(_ sender: UIButton) {
+    let detailAdminVC = DetailAdminVC()
+    
+    if sender.tag == 0 {
+      detailAdminVC.title = "스쿨관리"
+    } else if sender.tag == 1 {
+      detailAdminVC.title = "학생관리"
+      Firebase.shared.getStudentList(){
+        let data = $0.filter { $0.isAdmin == "0" }
+        detailAdminVC.cellArr = data
+        detailAdminVC.adminState = false
+      }
+    } else if sender.tag == 2 {
+      detailAdminVC.title = "관리자"
+      Firebase.shared.getStudentList(){
+        let data = $0.filter { $0.isAdmin == "0" }
+        detailAdminVC.cellArr = data
+       detailAdminVC.adminState = true
+      }
     }
-  }
-  
-  func getSchoolTableView() {
-    Firebase.shared.getStudentList { StudentList in
-      
-    }
-  }
 }
