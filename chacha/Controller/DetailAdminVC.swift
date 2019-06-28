@@ -10,17 +10,6 @@ import UIKit
 
 class DetailAdminVC: UIViewController {
   
-<<<<<<< HEAD
-//  private let reloadBtn: UIButton = {
-//    let btn = UIButton(type: .system)
-//    btn.translatesAutoresizingMaskIntoConstraints = false
-//    btn.setTitle("새로고침", for: .normal)
-//    btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-//    btn.addTarget(self, action: #selector(didTapReloadBtn(_:)), for: .touchUpInside)
-//    btn.layer.borderWidth = 1
-//    return btn
-//  }()
-=======
   var adminState = false
   
   var cellArr = [StudentList]() {
@@ -42,17 +31,6 @@ class DetailAdminVC: UIViewController {
     btn.layer.borderWidth = 1
     return btn
   }()
->>>>>>> 90292d194cf90a5b14e5e62469448dbec43154a9
-  
-//  private let popBtn: UIButton = {
-//    let btn = UIButton(type: .system)
-//    btn.translatesAutoresizingMaskIntoConstraints = false
-//    btn.setTitle("뒤로가기", for: .normal)
-//    btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-//    btn.addTarget(self, action: #selector(didTapPopBtn(_:)), for: .touchUpInside)
-//    btn.layer.borderWidth = 1
-//    return btn
-//  }()
   
   private lazy var tableView: UITableView = {
     let tableView = UITableView()
