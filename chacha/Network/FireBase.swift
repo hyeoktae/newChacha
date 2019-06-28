@@ -30,13 +30,14 @@ final class Firebase {
                    .document("2019-06")
                    .collection("3D3F657B-00A1-43B3-8524-DDAAA0D28B54")
     
-    print("[Log] hi")
     docRef.getDocuments { (querySnapshot, error) in
       if let error = error {
         print("Error getting documents: \(error.localizedDescription)")
       } else {
         for document in querySnapshot!.documents {
-          print(document.documentID)
+          let data = document.data()
+          let shared = Fury.shared
+          shared.monthStateArr["2019-06"]?.append(data["state"] as! String)
         }
       }
     }

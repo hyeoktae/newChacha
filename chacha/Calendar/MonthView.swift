@@ -73,6 +73,15 @@ class MonthView: UIView {
         currentYear -= 1
       }
     }
+    
+    var currentMonthString = ""
+    if String(currentMonthIndex).count == 1 {
+      currentMonthString = "0\(currentMonthIndex + 1)"
+    } else {
+      currentMonthString = "\(currentMonthIndex + 1)"
+    }
+    print("[Log2] date : \(currentYear)-\(currentMonthString)")
+    
     lblName.text = "\(monthsArr[currentMonthIndex]) \(currentYear)"
     delegate?.didChangeMonth(monthIndex: currentMonthIndex, year: currentYear)
   }
