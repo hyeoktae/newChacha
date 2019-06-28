@@ -251,6 +251,7 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
   }
   
   func collectionReloadData() {
+    
     let shared = Firebase.shared
     let shared2 = Fury.shared
     let monthIndex = String(format: "%02d", currentMonthIndex)
@@ -286,7 +287,7 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
   
   func setupViews() {
     addSubview(monthView)
-    monthView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+    monthView.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
     monthView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
     monthView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     monthView.heightAnchor.constraint(equalToConstant: 35).isActive = true
