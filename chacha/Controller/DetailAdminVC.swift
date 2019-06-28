@@ -101,7 +101,6 @@ extension DetailAdminVC: UITableViewDataSource {
 
 extension DetailAdminVC: UITableViewDelegate {
   func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-    print(adminState)
     guard adminState else { return nil }
     return indexPath
   }

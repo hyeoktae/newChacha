@@ -40,6 +40,7 @@ extension AdminVC: AdminViewDelegate {
     Firebase.shared.getStudentList(){
       let data = $0.filter { $0.isAdmin == "0" }
       self.detailAdminVC.cellArr = data
+      self.detailAdminVC.adminState = false
       self.present(self.detailAdminVC, animated: true)
     }
   }
