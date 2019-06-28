@@ -26,11 +26,17 @@ class DetailCheckVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     let shared = Firebase.shared
     let shared2 = Fury.shared
-    shared.getAttension(date: "", uuid: "") { (result) in
+    let currentYear = Calendar.current.component(.year, from: Date())
+    let currentMonthIndex = Calendar.current.component(.month, from: Date())
+    let monthIndex = String(format: "%02d", currentMonthIndex)
+    let date = "\(currentYear)-\(monthIndex)"
+    let userDefaults = UserDefaults.standard
+    let uuid = userDefaults.value(forKey: "uuid") as! String
+    shared.getAttension(date: date, uuid: uuid) { (result) in
       shared2.monthStateArr = result
-      print("[Log3] :", shared2.monthStateArr)
       DispatchQueue.main.async {
         self.calenderView.myCollectionView.reloadData()
       }
