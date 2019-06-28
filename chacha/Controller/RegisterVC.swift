@@ -82,7 +82,6 @@ extension RegisterVC: RegisterViewDelegate {
       
       shared.addStudent(name: name, uuid: uuid, address: address, school: school)
       
-      
       dismiss(animated: true, completion: nil)
     }
   }
