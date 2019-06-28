@@ -29,6 +29,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
   let mainVC = MainVC()
+  let checkVC = CheckVC()
+  let detailCheckVC = DetailCheckVC()
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
@@ -40,8 +42,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
 //    let navi = UINavigationController(rootViewController: mainVC)
-    let checkVC = CheckVC()
-    let detailCheckVC = DetailCheckVC()
+    
     
     let tabBarController = UITabBarController()
     let checkNavi = UINavigationController(rootViewController: checkVC)
@@ -85,7 +86,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   private func checkUUID() {
     guard baseUUID == nil else { return }
     print("uuid 없음")
-    mainVC.present(RegisterVC(), animated: true)
+    checkVC.present(RegisterVC(), animated: true)
   }
   
   // 위치에 관한 권한이 always가 아닐경우 설정으로 묻지도 따지지도않고 바로이동
