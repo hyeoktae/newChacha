@@ -48,6 +48,7 @@ extension AdminVC: AdminViewDelegate {
     
     if sender.tag == 0 {
       detailAdminVC.title = "스쿨관리"
+      
     } else if sender.tag == 1 {
       detailAdminVC.title = "학생관리"
       Firebase.shared.getStudentList(){
@@ -60,7 +61,8 @@ extension AdminVC: AdminViewDelegate {
       Firebase.shared.getStudentList(){
         let data = $0.filter { $0.isAdmin == "0" }
         detailAdminVC.cellArr = data
-       detailAdminVC.adminState = true
+        detailAdminVC.adminState = true
       }
     }
+  }
 }
