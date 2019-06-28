@@ -20,7 +20,7 @@ class AdminView: UIView {
   var delegate: AdminViewDelegate?
   
   // MARK: - Properties
-  private let schoolButton: UIButton = {
+  let schoolButton: UIButton = {
     let button = UIButton(type: .system)
     button.backgroundColor = .red
     button.setTitle("스쿨관리", for: .normal)
@@ -75,23 +75,25 @@ class AdminView: UIView {
     
     schoolButton.topAnchor.constraint(equalTo: topAnchor).isActive = true
     schoolButton.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-    schoolButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-    schoolButton.bottomAnchor.constraint(equalTo: studentButton.topAnchor).isActive = true
+    schoolButton.trailingAnchor.constraint(equalTo: studentButton.leadingAnchor).isActive = true
+    schoolButton.bottomAnchor.constraint(equalTo: adminButton.topAnchor).isActive = true
     
-    studentButton.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+    studentButton.topAnchor.constraint(equalTo: topAnchor).isActive = true
     studentButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-    studentButton.bottomAnchor.constraint(equalTo: adminButton.topAnchor).isActive = true
+    studentButton.bottomAnchor.constraint(equalTo: beaconButton.topAnchor).isActive = true
     studentButton.heightAnchor.constraint(equalTo: schoolButton.heightAnchor).isActive = true
+    studentButton.widthAnchor.constraint(equalTo: schoolButton.widthAnchor).isActive = true
     
     adminButton.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-    adminButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-    adminButton.bottomAnchor.constraint(equalTo: beaconButton.topAnchor).isActive = true
+    adminButton.trailingAnchor.constraint(equalTo: beaconButton.leadingAnchor).isActive = true
+    adminButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     adminButton.heightAnchor.constraint(equalTo: schoolButton.heightAnchor).isActive = true
+    adminButton.widthAnchor.constraint(equalTo: schoolButton.widthAnchor).isActive = true
     
-    beaconButton.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
     beaconButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     beaconButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     beaconButton.heightAnchor.constraint(equalTo: schoolButton.heightAnchor).isActive = true
+    beaconButton.widthAnchor.constraint(equalTo: schoolButton.widthAnchor).isActive = true
     
   }
   

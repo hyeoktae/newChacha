@@ -28,14 +28,16 @@ final class MainVC: UIViewController {
     view.backgroundColor = .white
     mainView.delegate = self
     setupMainView()
+    
+    print("mainVC_uuid: ", myUUID)
   }
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    // 이부분 임의로 사용하기 위해 주석처리
+    //학생인지 관리자인지 체크
     firstRunApp()
   }
   
-  // appdelegate 에서 넘어오는 uuid값의 유무 확인 후 nil이면 present
+  // uuid 관리자이면 관리자 페이지 띄움
   private func firstRunApp() {
     guard let myUUID = myUUID else { return }
     shared.getAdminData(uuid: myUUID) {
