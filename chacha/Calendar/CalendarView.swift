@@ -188,23 +188,23 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
       }
       
       // 현재 요일 미만만 확인
-      if indexPath.row < todayCount + todaysDate {
-        let monthIndex = String(format: "%02d", currentMonthIndex)
-        let dayIndex = String(format: "%02d", Int(cell.lbl.text!)!)
-        if shared.monthStateArr.keys.contains("\(currentYear)-\(monthIndex)") {
-          if (shared.monthStateArr["\(currentYear)-\(monthIndex)"]?.keys.contains(dayIndex))! {
-            let state = shared.monthStateArr["\(currentYear)-\(monthIndex)"]?[dayIndex]
-            if state == "출석" {
-              cell.lbl.backgroundColor = .green
-            } else if state == "지각" {
-              cell.lbl.backgroundColor = .yellow
-            } else {
-              cell.lbl.backgroundColor = .red
-            }
+      let monthIndex = String(format: "%02d", currentMonthIndex)
+      let dayIndex = String(format: "%02d", Int(cell.lbl.text!)!)
+      if shared.monthStateArr.keys.contains("\(currentYear)-\(monthIndex)") {
+        if (shared.monthStateArr["\(currentYear)-\(monthIndex)"]?.keys.contains(dayIndex))! {
+          let state = shared.monthStateArr["\(currentYear)-\(monthIndex)"]?[dayIndex]
+          if state == "출석" {
+            cell.lbl.backgroundColor = .green
+          } else if state == "지각" {
+            cell.lbl.backgroundColor = .yellow
+          } else {
+            cell.lbl.backgroundColor = .red
           }
         } else {
           cell.lbl.backgroundColor = .clear
         }
+      } else {
+        cell.lbl.backgroundColor = .clear
       }
     }
     
@@ -261,7 +261,9 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
     let userDefaults = UserDefaults.standard
     let uuid = userDefaults.value(forKey: "uuid") as! String
     shared.getAttension(date: date, uuid: uuid) { (result) in
+      shared2.monthStateArr = ["": ["": ""]]
       shared2.monthStateArr = result
+      print("[Log10]: ", result)
       DispatchQueue.main.async {
         self.myCollectionView.reloadData()
       }

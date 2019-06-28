@@ -26,7 +26,6 @@ class DetailCheckVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     let shared = Firebase.shared
     let shared2 = Fury.shared
     let currentYear = Calendar.current.component(.year, from: Date())
