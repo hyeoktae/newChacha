@@ -18,8 +18,7 @@ final class MainVC: UIViewController {
   var mainView = MainView()
   
   private let registerVC = RegisterVC()
-//  private let checkVC = CheckVC()
-  private let detailCheckVC = DetailCheckVC()
+  
   private let adminVC = AdminVC()
   
   override func viewDidLoad() {
@@ -56,29 +55,30 @@ final class MainVC: UIViewController {
     mainView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.8).isActive = true
   }
   
-  private func alertController() {
-    let alert = UIAlertController(title: "설정", message: "설정하기", preferredStyle: .actionSheet)
-    let addressChange = UIAlertAction(title: "집주소 변경", style: .default) { _ in
-      print("addressChange")
-    }
-    let pushAlarm = UIAlertAction(title: "푸시 알림 설정 [예]", style: .default) { _ in
-      print("pushAlarm")
-    }
-    let cancel = UIAlertAction(title: "취소", style: .cancel)
-    
-    alert.addAction(addressChange)
-    alert.addAction(pushAlarm)
-    alert.addAction(cancel)
-    present(alert, animated: true)
-  }
+//  private func alertController() {
+//    let alert = UIAlertController(title: "설정", message: "설정하기", preferredStyle: .actionSheet)
+//    let addressChange = UIAlertAction(title: "집주소 변경", style: .default) { _ in
+//      print("addressChange")
+//    }
+//    let pushAlarm = UIAlertAction(title: "푸시 알림 설정 [예]", style: .default) { _ in
+//      print("pushAlarm")
+//    }
+//    let cancel = UIAlertAction(title: "취소", style: .cancel)
+//
+//    alert.addAction(addressChange)
+//    alert.addAction(pushAlarm)
+//    alert.addAction(cancel)
+//    present(alert, animated: true)
+//  }
 }
 
 
 extension MainVC: MainViewDelegate {
   //attendButton 누를 시 CheckVC로 이동
   func attendCheck() {
-    print("didTapAttendButtonDelegate")
     let checkVC = CheckVC()
+    let detailCheckVC = DetailCheckVC()
+    
     let tabBarController = UITabBarController()
     let checkNavi = UINavigationController(rootViewController: checkVC)
     let detailCheckNavi = UINavigationController(rootViewController: detailCheckVC)
@@ -93,7 +93,7 @@ extension MainVC: MainViewDelegate {
   //settingButton 누를 시 action Sheet
   func setting() {
     print("didTapSettingButtonDelegate")
-    alertController()
+//    alertController()
     
   }
   

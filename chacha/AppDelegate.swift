@@ -36,11 +36,24 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     checkUUID()
     // 파베초기화
     Firebase.shared.firebaseInitialize()
-    
-    let navi = UINavigationController(rootViewController: mainVC)
-    
     window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = navi
+    
+    
+//    let navi = UINavigationController(rootViewController: mainVC)
+    let checkVC = CheckVC()
+    let detailCheckVC = DetailCheckVC()
+    
+    let tabBarController = UITabBarController()
+    let checkNavi = UINavigationController(rootViewController: checkVC)
+    let detailCheckNavi = UINavigationController(rootViewController: detailCheckVC)
+    
+    checkVC.tabBarItem = UITabBarItem(title: "오늘", image: UIImage(named: "today"), selectedImage: UIImage(named: "clock"))
+    detailCheckVC.tabBarItem = UITabBarItem(title: "전체", image: UIImage(named: "calendar"), selectedImage: UIImage(named: "calendar"))
+    tabBarController.viewControllers = [checkNavi, detailCheckNavi]
+    
+    
+    
+    window?.rootViewController = tabBarController
     window?.backgroundColor = .white
     window?.makeKeyAndVisible()
     
