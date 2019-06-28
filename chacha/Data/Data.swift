@@ -30,6 +30,10 @@ struct StudentList {
   var add: String
 }
 
+struct SchoolList {
+  var school: String
+}
+
 class ForCheck {
   static let shared = ForCheck()
   

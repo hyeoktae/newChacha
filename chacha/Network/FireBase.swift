@@ -112,6 +112,26 @@ final class Firebase {
     }
   }
   
+  func getSchoolList(completion: @escaping ([SchoolList]) -> ()) {
+    var resultData = [SchoolList]()
+    db.collection("school").getDocuments { (snap, err) in
+      guard err == nil else { return }
+      guard let documents = snap?.documents else { return }
+      for document in documents {
+        guard let data = document.data() as? [String: String] else { continue }
+        
+        let fds = data["fds"] ?? ""
+        let iOS = data["iOS"] ?? ""
+        let wds = data["wds"] ?? ""
+        
+        resultData.append(SchoolList(school: fds))
+        resultData.append(SchoolList(school: iOS))
+        resultData.append(SchoolList(school: wds))
+      }
+      completion(resultData)
+    }
+  }
+  
   func getStudentList(completion: @escaping ([StudentList]) -> ()) {
     var resultData = [StudentList]()
     db.collection("student").getDocuments { (snap, err) in

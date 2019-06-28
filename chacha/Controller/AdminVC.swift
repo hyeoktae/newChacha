@@ -55,8 +55,11 @@ extension AdminVC: AdminViewDelegate {
       self.detailAdminVC.adminState = true
       self.present(self.detailAdminVC, animated: true)
     }
-    
   }
   
-  
+  func getSchoolTableView() {
+    Firebase.shared.getStudentList { StudentList in
+      
+    }
+  }
 }
