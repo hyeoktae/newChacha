@@ -10,7 +10,27 @@ import UIKit
 
 class DetailAdminVC: UIViewController {
   
-  private let tableView: UITableView = {
+  private let reloadBtn: UIButton = {
+    let btn = UIButton(type: .system)
+    btn.translatesAutoresizingMaskIntoConstraints = false
+    btn.setTitle("새로고침", for: .normal)
+    btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+    btn.addTarget(self, action: #selector(didTapReloadBtn(_:)), for: .touchUpInside)
+    btn.layer.borderWidth = 1
+    return btn
+  }()
+  
+  private let popBtn: UIButton = {
+    let btn = UIButton(type: .system)
+    btn.translatesAutoresizingMaskIntoConstraints = false
+    btn.setTitle("뒤로가기", for: .normal)
+    btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+    btn.addTarget(self, action: #selector(didTapPopBtn(_:)), for: .touchUpInside)
+    btn.layer.borderWidth = 1
+    return btn
+  }()
+  
+  private lazy var tableView: UITableView = {
     let tableView = UITableView()
     tableView.translatesAutoresizingMaskIntoConstraints = false
     return tableView
@@ -18,14 +38,31 @@ class DetailAdminVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupTableView()
+    setupLayout()
   }
   
-  private func setupTableView() {
+  @objc private func didTapPopBtn(_ sender: UIButton) {
+    dismiss(animated: true)
+  }
+  
+  @objc private func didTapReloadBtn(_ sender: UIButton) {
+    tableView.reloadData()
+  }
+  
+  private func setupLayout() {
     view.addSubview(tableView)
+    view.addSubview(popBtn)
+    view.addSubview(reloadBtn)
     
     let guide = view.safeAreaLayoutGuide
-    tableView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+    
+    reloadBtn.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+    reloadBtn.leadingAnchor.constraint(equalTo: guide.centerXAnchor).isActive = true
+    
+    popBtn.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+    popBtn.trailingAnchor.constraint(equalTo: guide.centerXAnchor).isActive = true
+    
+    tableView.topAnchor.constraint(equalTo: reloadBtn.bottomAnchor).isActive = true
     tableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
     tableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
     tableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
