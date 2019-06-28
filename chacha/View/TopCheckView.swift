@@ -49,6 +49,12 @@ class TopCheckView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
   
+    setupTopCheckView()
+  }
+  
+  private func setupTopCheckView() {
+    addSubview(schoolLabel)
+    addSubview(nameLable)
   }
   
   override func layoutSubviews() {
@@ -60,7 +66,7 @@ class TopCheckView: UIView {
     
     nameLable.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
     nameLable.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-//    nameLable.bottomAnchor.constraint(equalTo: stateImageView.topAnchor, constant: -100).isActive = true
+    nameLable.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
   }
   
   required init?(coder aDecoder: NSCoder) {

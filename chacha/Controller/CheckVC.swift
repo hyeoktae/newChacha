@@ -17,6 +17,7 @@ class CheckVC: UIViewController {
   
   let shared = Firebase.shared
   let checkView = CheckView()
+  let topCheckView = TopCheckView()
   
   
   override func viewDidLoad() {
@@ -50,11 +51,16 @@ class CheckVC: UIViewController {
   
   private func setupCheckView() {
     view.addSubview(checkView)
+    view.addSubview(topCheckView)
     
     let guide = view.safeAreaLayoutGuide
+    
+    topCheckView.translatesAutoresizingMaskIntoConstraints = false
+    topCheckView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    
+    
+    
     checkView.translatesAutoresizingMaskIntoConstraints = false
-    checkView.centerXAnchor.constraint(equalTo: guide.centerXAnchor).isActive = true
-    checkView.centerYAnchor.constraint(equalTo: guide.centerYAnchor).isActive = true
     checkView.widthAnchor.constraint(equalTo: guide.widthAnchor, multiplier: 0.8).isActive = true
     checkView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.3).isActive = true
   }

@@ -65,9 +65,7 @@ class CheckView: UIView {
   }
   
   private func setupCheckView() {
-    addSubview(nameLable)
-    addSubview(schoolLabel)
-    
+
     addSubview(stateImageView)
     addSubview(stateLabel)
   }
