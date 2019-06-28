@@ -64,7 +64,7 @@ extension AdminVC: AdminViewDelegate {
       }
     }
     let detailAdminNavi = UINavigationController(rootViewController: detailAdminVC)
-    present(detailAdminNavi, animated: true)
+    present(detailAdminNavi, animated: true) 
     
   func getAdminTableView() {
     
