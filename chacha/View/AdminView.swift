@@ -10,7 +10,7 @@ import UIKit
 
 protocol AdminViewDelegate: class {
   //스쿨관리 버튼 누를시 실행할 메소드
-  func getAdminTableView()
+  func getAdminTableView(_ sender: UIButton)
   func moveToAddBeaconVC()
   func didTapStudentList()
 }
@@ -32,6 +32,13 @@ class AdminView: UIView {
   
   private let schoolButton: UIButton = {
     let button = UIButton(type: .system)
+    button.tag = 0
+    button.backgroundColor = #colorLiteral(red: 0.9270304569, green: 0.9270304569, blue: 0.9270304569, alpha: 1)
+    button.layer.shadowColor = UIColor.black.cgColor
+    button.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+    button.layer.masksToBounds = false
+    button.layer.shadowRadius = 1.0
+    button.layer.shadowOpacity = 0.5
     button.backgroundColor = .red
     button.setTitle("스쿨리스트", for: .normal)
     button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .ultraLight)
@@ -43,8 +50,19 @@ class AdminView: UIView {
   
   private let studentButton: UIButton = {
     let button = UIButton(type: .system)
+<<<<<<< HEAD
+    button.tag = 1
+    button.backgroundColor = #colorLiteral(red: 0.9270304569, green: 0.9270304569, blue: 0.9270304569, alpha: 1)
+    button.layer.shadowColor = UIColor.black.cgColor
+    button.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+    button.layer.masksToBounds = false
+    button.layer.shadowRadius = 1.0
+    button.layer.shadowOpacity = 0.5
+    button.setTitle("학생관리", for: .normal)
+=======
     button.backgroundColor = .orange
     button.setTitle("학생리스트", for: .normal)
+>>>>>>> 90292d194cf90a5b14e5e62469448dbec43154a9
     button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .ultraLight)
     button.tintColor = .black
     button.addTarget(self, action: #selector(didTapStudent(_:)), for: .touchUpInside)
@@ -54,8 +72,19 @@ class AdminView: UIView {
   
   private let adminButton: UIButton = {
     let button = UIButton(type: .system)
+<<<<<<< HEAD
+    button.tag = 2
+    button.backgroundColor = #colorLiteral(red: 0.9270304569, green: 0.9270304569, blue: 0.9270304569, alpha: 1)
+    button.layer.shadowColor = UIColor.black.cgColor
+    button.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+    button.layer.masksToBounds = false
+    button.layer.shadowRadius = 1.0
+    button.layer.shadowOpacity = 0.5
+    button.setTitle("관리자관리", for: .normal)
+=======
     button.backgroundColor = .yellow
     button.setTitle("관리자등록", for: .normal)
+>>>>>>> 90292d194cf90a5b14e5e62469448dbec43154a9
     button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .ultraLight)
     button.tintColor = .black
     button.addTarget(self, action: #selector(didTapAdminButton(_:)), for: .touchUpInside)
@@ -65,7 +94,12 @@ class AdminView: UIView {
   
   private let beaconButton: UIButton = {
     let button = UIButton(type: .system)
-    button.backgroundColor = .green
+    button.backgroundColor = #colorLiteral(red: 0.9270304569, green: 0.9270304569, blue: 0.9270304569, alpha: 1)
+    button.layer.shadowColor = UIColor.black.cgColor
+    button.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+    button.layer.masksToBounds = false
+    button.layer.shadowRadius = 1.0
+    button.layer.shadowOpacity = 0.5
     button.setTitle("비콘관리", for: .normal)
     button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .ultraLight)
     button.tintColor = .black
@@ -125,7 +159,7 @@ class AdminView: UIView {
   }
   
   @objc private func didTapAdminButton(_ sender: UIButton) {
-    delegate?.getAdminTableView()
+    delegate?.getAdminTableView(sender)
   }
   
   @objc private func didTapStudent(_ sender: UIButton) {
