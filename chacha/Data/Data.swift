@@ -9,21 +9,32 @@
 import Foundation
 
 // network 오류 등등
-enum fail: Error {
+enum Fail: Error {
   case downloadFail, networkError, noData, uploadFail
 }
 
-enum stateOfCheck: String {
+enum StateOfCheck: String {
   case check, late, none
+}
+
+struct ForCheckModel {
+  var text: String
+  var imgName: String
+}
+
+class ForCheck {
+  static let shared = ForCheck()
+  
+  var amICheck = ForCheckModel(text: "출석체크 아직 안함", imgName: "cancel")
 }
 
 final class todayCheck {
   static let shared = todayCheck()
   
-  private var stateArr = [stateOfCheck]()
+  private var stateArr = [StateOfCheck]()
   private var todayArr = [String]()
   
-  func checkState(completion: @escaping () -> ()) {
+  func checkState(completion: @escaping (StateOfCheck) -> ()) {
     let result = checkTime()
     checkToday(result.1)
     stateArr.append(result.0)
@@ -36,7 +47,7 @@ final class todayCheck {
     }
     
     Firebase.shared.registerCheck(uuid: uuid, name: name, school: school, state: stateArr.first!, today: todayArr.first!) {
-      completion()
+      completion(self.stateArr.first!)
     }
   }
   
@@ -46,7 +57,7 @@ final class todayCheck {
     todayArr = []
   }
   
-  private func checkTime() -> (stateOfCheck, String) {
+  private func checkTime() -> (StateOfCheck, String) {
     let timeFormatter = DateFormatter()
     let dateFormatter = DateFormatter()
     // 출근해야하는 시간

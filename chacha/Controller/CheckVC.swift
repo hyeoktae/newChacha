@@ -16,6 +16,7 @@ class CheckVC: UIViewController {
     super.viewDidLoad()
     
     setupCheckView()
+    
   }
   
   private func setupCheckView() {

@@ -12,17 +12,22 @@ class CheckView: UIView {
   
   // MARK: - Properties
   
-  private let stateImageView: UIImageView = {
-    let imageView = UIImageView()
+  private var stateText: ForCheckModel {
+    return ForCheck.shared.amICheck
+  }
+  
+  private var stateImageView: UIButton = {
+    let imageView = UIButton()
     imageView.backgroundColor = .yellow
-    imageView.image = UIImage(named: "dismiss")
+    imageView.imageView?.image = UIImage(named: "cancel")
     imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.addTarget(self, action: #selector(didTapStateImageView(_:)), for: .touchUpInside)
     return imageView
   }()
   
-  private let stateLabel: UILabel = {
+  private var stateLabel: UILabel = {
     let label = UILabel()
-    label.text = "출석처리 되었습니다."
+    label.text = "아직 출첵 안함"
     label.textAlignment = .center
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
@@ -33,6 +38,12 @@ class CheckView: UIView {
     super.init(frame: frame)
     
     setupCheckView()
+  }
+  
+  @objc private func didTapStateImageView(_ sender: UIButton) {
+    print("didTapStateImageView")
+    stateImageView.imageView?.image = UIImage(named: ForCheck.shared.amICheck.imgName)
+    stateLabel.text = ForCheck.shared.amICheck.text
   }
   
   override func layoutSubviews() {

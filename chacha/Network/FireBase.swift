@@ -78,7 +78,7 @@ final class Firebase {
   }
   
   // 오늘 지각인지 아닌지 검사
-  func registerCheck(uuid: String, name: String, school: String, state: stateOfCheck, today: String, completion: @escaping () -> ()) {
+  func registerCheck(uuid: String, name: String, school: String, state: StateOfCheck, today: String, completion: @escaping () -> ()) {
     var stateString = String()
     switch state {
     case .check:
@@ -118,7 +118,7 @@ final class Firebase {
   }
   
   // 비콘 추가 3단 비동기 토나와 ㅅㅂ 더좋은 방법이 있을꺼야 찾아보던가
-  func addBeacons(_ beacons: [beaconInfo]?, completion: @escaping (Result<Bool, fail>) -> ()) {
+  func addBeacons(_ beacons: [beaconInfo]?, completion: @escaping (Result<Bool, Fail>) -> ()) {
     guard let beacons = beacons else {completion(.failure(.noData)); return }
     let name = beacons.map { $0.name }
     let location = beacons.map { $0.location }
@@ -140,7 +140,7 @@ final class Firebase {
   
   // 파베에 있는 데이터 긁어오기 파싱하는것 처럼 하면되는데
   // 더 좋은 방법이 있을껀데... 난 모르거쑴
-  func getBeacons(completion: @escaping (Result<Bool, fail>) -> ()) {
+  func getBeacons(completion: @escaping (Result<Bool, Fail>) -> ()) {
     var uuid = [String]()
     var name = [String]()
     var location = [String]()

@@ -106,7 +106,14 @@ extension AppDelegate: CLLocationManagerDelegate {
       // 아래에 출첵 시키면 됨
       guard (UserDefaults.standard.string(forKey: "uuid") != nil) else { return }
       todayCheck.shared.checkState() {
-        print("출첵 성공")
+        switch $0 {
+        case .check:
+          ForCheck.shared.amICheck = ForCheckModel(text: "출석 완료", imgName: "check")
+        case .late:
+          ForCheck.shared.amICheck = ForCheckModel(text: "지각해땅 ㅜㅜ", imgName: "late")
+        case .none:
+          break
+        }
       }
     } else if state == .outside {
       // 비콘의 탐지 범위 외
