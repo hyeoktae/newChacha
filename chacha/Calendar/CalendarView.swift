@@ -76,21 +76,21 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
   
   private let attendanceView: UIView = {
     let view = UIView()
-    view.backgroundColor = .green
+    view.backgroundColor = #colorLiteral(red: 0, green: 0.5894984603, blue: 0, alpha: 1)
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
   
   private let latingView: UIView = {
     let view = UIView()
-    view.backgroundColor = .yellow
+    view.backgroundColor = #colorLiteral(red: 0.9335912466, green: 0.8079068065, blue: 0, alpha: 1)
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
   
   private let absentView: UIView = {
     let view = UIView()
-    view.backgroundColor = .red
+    view.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
@@ -194,11 +194,11 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
         if (shared.monthStateArr["\(currentYear)-\(monthIndex)"]?.keys.contains(dayIndex))! {
           let state = shared.monthStateArr["\(currentYear)-\(monthIndex)"]?[dayIndex]
           if state == "출석" {
-            cell.lbl.backgroundColor = .green
+            cell.lbl.backgroundColor = #colorLiteral(red: 0, green: 0.5894984603, blue: 0, alpha: 1)
           } else if state == "지각" {
-            cell.lbl.backgroundColor = .yellow
+            cell.lbl.backgroundColor = #colorLiteral(red: 0.9335912466, green: 0.8079068065, blue: 0, alpha: 1)
           } else {
-            cell.lbl.backgroundColor = .red
+            cell.lbl.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
           }
         } else {
           cell.lbl.backgroundColor = .clear
@@ -207,7 +207,6 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
         cell.lbl.backgroundColor = .clear
       }
     }
-    
     return cell
   }
   
