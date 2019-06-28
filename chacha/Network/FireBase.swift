@@ -118,7 +118,8 @@ final class Firebase {
       "name": name,
       "uuid": uuid,
       "address": address ?? "",
-      "school": school
+      "school": school,
+      "isAdmin": false
     ]) { err in
       if let err = err {
         print("Error writing document: \(err)")

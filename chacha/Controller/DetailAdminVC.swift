@@ -68,3 +68,13 @@ class DetailAdminVC: UIViewController {
     tableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
   }
 }
+
+//extension DetailAdminVC: UITableViewDataSource {
+//  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//    ()
+//  }
+//  
+//  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//    ()
+//  }
+//}
