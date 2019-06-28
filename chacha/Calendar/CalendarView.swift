@@ -308,35 +308,35 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
     addSubview(attendanceView)
     attendanceView.topAnchor.constraint(equalTo: myCollectionView.bottomAnchor).isActive = true
     attendanceView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-    attendanceView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-    attendanceView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+    attendanceView.heightAnchor.constraint(equalToConstant: 15).isActive = true
+    attendanceView.widthAnchor.constraint(equalToConstant: 15).isActive = true
     
     addSubview(attendanceText)
     attendanceText.topAnchor.constraint(equalTo: myCollectionView.bottomAnchor).isActive = true
     attendanceText.leadingAnchor.constraint(equalTo: attendanceView.trailingAnchor, constant: 5).isActive = true
-    attendanceText.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    attendanceText.heightAnchor.constraint(equalToConstant: 15).isActive = true
     
     addSubview(latingView)
     latingView.topAnchor.constraint(equalTo: myCollectionView.bottomAnchor).isActive = true
     latingView.leadingAnchor.constraint(equalTo: attendanceText.trailingAnchor, constant: 10).isActive = true
-    latingView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-    latingView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+    latingView.heightAnchor.constraint(equalToConstant: 15).isActive = true
+    latingView.widthAnchor.constraint(equalToConstant: 15).isActive = true
     
     addSubview(latingText)
     latingText.topAnchor.constraint(equalTo: myCollectionView.bottomAnchor).isActive = true
     latingText.leadingAnchor.constraint(equalTo: latingView.trailingAnchor, constant: 5).isActive = true
-    latingText.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    latingText.heightAnchor.constraint(equalToConstant: 15).isActive = true
     
     addSubview(absentView)
     absentView.topAnchor.constraint(equalTo: myCollectionView.bottomAnchor).isActive = true
     absentView.leadingAnchor.constraint(equalTo: latingText.trailingAnchor, constant: 10).isActive = true
-    absentView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-    absentView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+    absentView.heightAnchor.constraint(equalToConstant: 15).isActive = true
+    absentView.widthAnchor.constraint(equalToConstant: 15).isActive = true
     
     addSubview(absentText)
     absentText.topAnchor.constraint(equalTo: myCollectionView.bottomAnchor).isActive = true
     absentText.leadingAnchor.constraint(equalTo: absentView.trailingAnchor, constant: 5).isActive = true
-    absentText.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    absentText.heightAnchor.constraint(equalToConstant: 15).isActive = true
   }
   
   required init?(coder aDecoder: NSCoder) {

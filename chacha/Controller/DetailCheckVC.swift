@@ -54,7 +54,7 @@ class DetailCheckVC: UIViewController {
     attendView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.4).isActive = true
     
     view.addSubview(calenderView)
-    calenderView.topAnchor.constraint(equalTo: attendView.bottomAnchor, constant: 10).isActive = true
+    calenderView.topAnchor.constraint(equalTo: attendView.bottomAnchor).isActive = true
     calenderView.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 12).isActive = true
     calenderView.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -12).isActive = true
     calenderView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
