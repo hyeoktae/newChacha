@@ -12,14 +12,16 @@ class CheckView: UIView {
   
   // MARK: - Properties
   
-  private var stateText: ForCheckModel {
-    return ForCheck.shared.amICheck
+  private var state: ForCheckModel = ForCheck.shared.amICheck {
+    willSet(new) {
+      stateImageView.setImage(UIImage(named: new.imgName), for: .normal)
+      stateLabel.text = new.text
+    }
   }
   
   private var stateImageView: UIButton = {
     let imageView = UIButton()
-    imageView.backgroundColor = .yellow
-    imageView.imageView?.image = UIImage(named: "cancel")
+    imageView.contentMode = .scaleAspectFit
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.addTarget(self, action: #selector(didTapStateImageView(_:)), for: .touchUpInside)
     return imageView
@@ -27,7 +29,6 @@ class CheckView: UIView {
   
   private var stateLabel: UILabel = {
     let label = UILabel()
-    label.text = "아직 출첵 안함"
     label.textAlignment = .center
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
@@ -38,20 +39,22 @@ class CheckView: UIView {
     super.init(frame: frame)
     
     setupCheckView()
+    didTapStateImageView(stateImageView)
+    
   }
   
   @objc private func didTapStateImageView(_ sender: UIButton) {
     print("didTapStateImageView")
-    stateImageView.imageView?.image = UIImage(named: ForCheck.shared.amICheck.imgName)
-    stateLabel.text = ForCheck.shared.amICheck.text
+    print(ForCheck.shared.amICheck.text)
+    state = ForCheck.shared.amICheck
   }
   
   override func layoutSubviews() {
     super.layoutSubviews()
     
     stateImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-    stateImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-    stateImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    stateImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+    stateImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
     stateImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     
     stateLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true

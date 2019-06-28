@@ -84,6 +84,7 @@ class MonthView: UIView {
     
     lblName.text = "\(monthsArr[currentMonthIndex]) \(currentYear)"
     delegate?.didChangeMonth(monthIndex: currentMonthIndex, year: currentYear)
+    
   }
   
   func setupViews() {

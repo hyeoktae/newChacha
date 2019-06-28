@@ -10,7 +10,6 @@ import Foundation
 import Firebase
 import CoreLocation
 
-
 final class Firebase {
   static let shared = Firebase()
   
@@ -25,7 +24,8 @@ final class Firebase {
   }
   
   // 출결 정보 가져오기
-  func getAttension(date: String, uuid: String) {
+  func getAttension(date: String, uuid: String, completion: @escaping ([String: [String: String]]) -> () ) {
+    var stateArr = [String: [String: String]]()
     let docRef = db.collection("attend")
                    .document("2019-06")
                    .collection("3D3F657B-00A1-43B3-8524-DDAAA0D28B54")
@@ -36,9 +36,24 @@ final class Firebase {
       } else {
         for document in querySnapshot!.documents {
           let data = document.data()
-          let shared = Fury.shared
-          shared.monthStateArr["2019-06"]?.append(data["state"] as! String)
+          let dateArr = document.documentID.components(separatedBy: "-")
+          
+          if stateArr.keys.contains("2019-06") {
+            if (stateArr["2019-06"]?.keys.contains(dateArr[2]))! {
+              stateArr["2019-06"]![dateArr[2]]?.append(data["state"] as! String)
+            } else {
+              stateArr["2019-06"]![dateArr[2]] = (data["state"] as! String)
+            }
+          } else {
+            stateArr["2019-06"] = [dateArr[2]: data["state"] as! String]
+          }
+          
+//          print("[Log3] dateArr:", dateArr[2])
+//          print("[Log3] dataState:", data["state"] as! String)
+//          shared.monthStateArr["2019-06"]?.append(data["state"] as! String)
+//          shared.monthStateArr["2019-06"]?.append(data["state"] as! String)
         }
+        completion(stateArr)
       }
     }
   }
@@ -96,7 +111,8 @@ final class Firebase {
       "School": school,
       "state": stateString
       ])) {
-        guard $0 != nil else { return }
+        guard $0 == nil else { return }
+        debugPrint("여기 작동함 \n")
         completion()
     }
   }

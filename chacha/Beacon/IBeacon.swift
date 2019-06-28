@@ -38,6 +38,7 @@ final class IBeacon {
     
     // 이부분이 좀 많이 심각하게 오래걸렸음
     for nearBeacon in nearBeacons! {
+      print("UUID@@@@@@: ", nearBeacon.proximityUUID.uuidString)
       var count = 0
       for downloadBeacon in downloadBeacons {
         if nearBeacon.proximityUUID.uuidString == downloadBeacon.uuid {
@@ -98,7 +99,7 @@ extension AppDelegate: CLLocationManagerDelegate {
   // 비콘 탐지중
   func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
     print("비콘 탐지 시작")
-    guard beaconRegion.proximityUUID == uuid else { return }
+//    guard beaconRegion.proximityUUID == uuid else { return }
     
     if state == .inside {
       // 비콘의 탐지 범위 내
@@ -109,15 +110,19 @@ extension AppDelegate: CLLocationManagerDelegate {
         switch $0 {
         case .check:
           ForCheck.shared.amICheck = ForCheckModel(text: "출석 완료", imgName: "check")
+          print("state.inside: ", "check")
         case .late:
           ForCheck.shared.amICheck = ForCheckModel(text: "지각해땅 ㅜㅜ", imgName: "late")
+          print("state.inside: ", "late")
         case .none:
-          break
+          ForCheck.shared.amICheck = ForCheckModel(text: "출첵 안함", imgName: "cancel")
+          print("state.inside: ", "cancel")
         }
       }
     } else if state == .outside {
       // 비콘의 탐지 범위 외
       locationManager.stopRangingBeacons(in: beaconRegion)
+      print("비콘의 탐지 범위 외")
     } else if state == .unknown {
       // 알수 없는 오류
       print("Now unknown of Region")
@@ -127,6 +132,7 @@ extension AppDelegate: CLLocationManagerDelegate {
   // 비콘 거리 감지하는
   func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
     IBeacon.shared.nearBeacons = beacons
+    
     //    print("beacon 탐지중")
     
     //    print("@@@비콘의 범위 탐지함@@@", IBeacon.shared.nearBeacons)

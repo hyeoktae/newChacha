@@ -14,13 +14,13 @@ struct Colors {
 }
 
 struct Style {
-  static var bgColor = UIColor.white
-  static var monthViewLblColor = UIColor.white
-  static var monthViewBtnRightColor = UIColor.white
-  static var monthViewBtnLeftColor = UIColor.white
-  static var activeCellLblColor = UIColor.white
+  static var bgColor = UIColor.black
+  static var monthViewLblColor = UIColor.black
+  static var monthViewBtnRightColor = UIColor.black
+  static var monthViewBtnLeftColor = UIColor.black
+  static var activeCellLblColor = UIColor.black
   static var activeCellLblColorHighlighted = UIColor.black
-  static var weekdaysLblColor = UIColor.white
+  static var weekdaysLblColor = UIColor.black
   
   static func themeLight(){
     bgColor = UIColor.white
@@ -35,17 +35,7 @@ struct Style {
 
 class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MonthViewDelegate {
   
-  let attensionArr = [
-    "출석", "출석", "지각", "지각", "", "", "출석", "출석", "지각", "출석",
-    "출석", "", "", "결석", "출석", "출석", "결석", "출석", "", "",
-    "출석", "출석", "출석", "지각", "출석", "", "", "출석", "출석", "출석",
-    "결석", "결석", "", "", "출석", "출석", "지각", "지각", "출석", "",
-    "", "지각", "출석", "지각", "출석", "출석", "", "", "지각", "출석",
-    "출석", "지각", "출석", "", "", "출석", "출석", "출석", "지각", "출석",
-    "", "", "출석", "지각", "출석", "출석", "출석", "", "", "출석",
-    "출석", "지각", "출석", "지각", "", "", "출석", "출석", "지각", "출석",
-    "", "", ""
-  ]
+  private let shared = Fury.shared
   
   // MARK: Properties
   var todayCount = -1
@@ -184,18 +174,6 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
       cell.isHidden = true
     } else {
       print("[Log] :", currentCount)
-      
-      // 현재 요일 미만만 확인
-      if indexPath.row < todayCount + todaysDate {
-        if attensionArr[indexPath.row] == "출석" {
-          cell.lbl.backgroundColor = .green
-        } else if attensionArr[indexPath.row] == "지각" {
-          cell.lbl.backgroundColor = .yellow
-        } else {
-          cell.lbl.backgroundColor = .red
-        }
-      }
-      
       if indexPath.row == todayCount + todaysDate {
         let calcDate = indexPath.row - firstWeekDayOfMonth + 2
         cell.isHidden = false
@@ -208,6 +186,33 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
         cell.lbl.text = "\(calcDate)"
         cell.lbl.textColor = Style.activeCellLblColor
       }
+      
+      
+      
+      // 현재 요일 미만만 확인
+      if indexPath.row < todayCount + todaysDate {
+        let monthIndex = String(format: "%02d", currentMonthIndex)
+        
+        print("[Log4] : ", shared.monthStateArr)
+        print("[Log4] : month", monthIndex)
+        
+        if shared.monthStateArr.keys.contains("\(currentYear)-\(monthIndex)") {
+          if (shared.monthStateArr["\(currentYear)-\(monthIndex)"]?.keys.contains("\(cell.lbl.text!)"))! {
+            let state = shared.monthStateArr["\(currentYear)-\(monthIndex)"]?["\(cell.lbl.text!)"]
+            if state == "출석" {
+              cell.lbl.backgroundColor = .green
+            } else if state == "지각" {
+              cell.lbl.backgroundColor = .yellow
+            } else {
+              cell.lbl.backgroundColor = .red
+            }
+          }
+        } else {
+          cell.lbl.backgroundColor = .clear
+        }
+      }
+      
+      
     }
     
     return cell
@@ -290,7 +295,7 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
     myCollectionView.topAnchor.constraint(equalTo: weekdaysView.bottomAnchor, constant: 0).isActive = true
     myCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
     myCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-    myCollectionView.heightAnchor.constraint(equalToConstant: 340).isActive = true
+    myCollectionView.heightAnchor.constraint(equalToConstant: 300).isActive = true
     
     addSubview(attendanceView)
     attendanceView.topAnchor.constraint(equalTo: myCollectionView.bottomAnchor).isActive = true
@@ -320,7 +325,6 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
     absentView.leadingAnchor.constraint(equalTo: latingText.trailingAnchor, constant: 10).isActive = true
     absentView.heightAnchor.constraint(equalToConstant: 20).isActive = true
     absentView.widthAnchor.constraint(equalToConstant: 20).isActive = true
-    
     
     addSubview(absentText)
     absentText.topAnchor.constraint(equalTo: myCollectionView.bottomAnchor).isActive = true
