@@ -48,8 +48,6 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
   var todaysDate = 0
   var firstWeekDayOfMonth = 0   //(Sunday-Saturday 1-7)
   
-  
-  
   let monthView: MonthView = {
     let v = MonthView()
     v.translatesAutoresizingMaskIntoConstraints = false
@@ -327,7 +325,6 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
     latingText.topAnchor.constraint(equalTo: myCollectionView.bottomAnchor).isActive = true
     latingText.leadingAnchor.constraint(equalTo: latingView.trailingAnchor, constant: 5).isActive = true
     latingText.heightAnchor.constraint(equalToConstant: 20).isActive = true
-    
     
     addSubview(absentView)
     absentView.topAnchor.constraint(equalTo: myCollectionView.bottomAnchor).isActive = true

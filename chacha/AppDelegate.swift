@@ -45,14 +45,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     let tabBarController = UITabBarController()
-    let checkNavi = UINavigationController(rootViewController: checkVC)
-    let detailCheckNavi = UINavigationController(rootViewController: detailCheckVC)
     
     checkVC.tabBarItem = UITabBarItem(title: "오늘", image: UIImage(named: "today"), selectedImage: UIImage(named: "clock"))
     detailCheckVC.tabBarItem = UITabBarItem(title: "전체", image: UIImage(named: "calendar"), selectedImage: UIImage(named: "calendar"))
-    tabBarController.viewControllers = [checkNavi, detailCheckNavi]
-    
-    
+    tabBarController.viewControllers = [checkVC, detailCheckVC]
     
     window?.rootViewController = tabBarController
     window?.backgroundColor = .white

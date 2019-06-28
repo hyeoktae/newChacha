@@ -20,12 +20,10 @@ class DetailCheckVC: UIViewController {
     return v
   }()
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-  }
-  
   override func viewDidLoad() {
     super.viewDidLoad()
+    title = "나의 출결"
+    
     let shared = Firebase.shared
     let shared2 = Fury.shared
     let currentYear = Calendar.current.component(.year, from: Date())

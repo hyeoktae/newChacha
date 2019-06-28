@@ -23,7 +23,6 @@ class CheckVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    title = "home"
     view.backgroundColor = .white
     setupCheckView()
     
@@ -46,8 +45,10 @@ class CheckVC: UIViewController {
     }
   }
   
-  
-  
+  // StatusBar Style 화이트로 변경
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
   
   private func setupCheckView() {
     view.addSubview(checkView)
@@ -56,7 +57,7 @@ class CheckVC: UIViewController {
     let guide = view.safeAreaLayoutGuide
     
     topCheckView.translatesAutoresizingMaskIntoConstraints = false
-    topCheckView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+    topCheckView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     topCheckView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
     topCheckView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
     topCheckView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.4).isActive = true
