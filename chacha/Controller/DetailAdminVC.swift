@@ -36,7 +36,6 @@ class DetailAdminVC: UIViewController {
     let tableView = UITableView()
     tableView.translatesAutoresizingMaskIntoConstraints = false
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-    tableView.rowHeight = 100
     tableView.dataSource = self
     tableView.delegate = self
     return tableView
