@@ -27,7 +27,7 @@ class AdminVC: UIViewController {
     adminView.translatesAutoresizingMaskIntoConstraints = false
     adminView.centerYAnchor.constraint(equalTo: guide.centerYAnchor).isActive = true
     adminView.widthAnchor.constraint(equalTo: guide.widthAnchor).isActive = true
-    adminView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.6).isActive = true
+    adminView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.8).isActive = true
     
     
   }

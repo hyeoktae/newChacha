@@ -35,8 +35,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     // 파베초기화
     Firebase.shared.firebaseInitialize()
     
+    let navi = UINavigationController(rootViewController: mainVC)
+    
     window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = mainVC
+    window?.rootViewController = navi
     window?.backgroundColor = .white
     window?.makeKeyAndVisible()
     

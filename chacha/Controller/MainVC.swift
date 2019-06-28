@@ -24,7 +24,7 @@ final class MainVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    title = "mainVC"
     view.backgroundColor = .white
     mainView.delegate = self
     setupMainView()
@@ -53,7 +53,7 @@ final class MainVC: UIViewController {
     mainView.translatesAutoresizingMaskIntoConstraints = false
     mainView.centerYAnchor.constraint(equalTo: guide.centerYAnchor).isActive = true
     mainView.widthAnchor.constraint(equalTo: guide.widthAnchor).isActive = true
-    mainView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.3).isActive = true
+    mainView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.8).isActive = true
   }
   
   private func alertController() {
@@ -77,13 +77,15 @@ final class MainVC: UIViewController {
 extension MainVC: MainViewDelegate {
   //attendButton 누를 시 CheckVC로 이동
   func attendCheck() {
-    print("didTapAttendButtonDelegate")
     let tabBarController = UITabBarController()
-    checkVC.tabBarItem = UITabBarItem(title: "오늘", image: nil, selectedImage: nil)
-    detailCheckVC.tabBarItem = UITabBarItem(title: "전체", image: nil, selectedImage: nil)
-    adminVC.tabBarItem = UITabBarItem(title: "관리자", image: nil, selectedImage: nil)
-    tabBarController.viewControllers = [checkVC, detailCheckVC, adminVC]
-    present(tabBarController, animated: true)
+    let checkNavi = UINavigationController(rootViewController: checkVC)
+    let detailCheckNavi = UINavigationController(rootViewController: detailCheckVC)
+    
+    checkVC.tabBarItem = UITabBarItem(title: "오늘", image: UIImage(named: "today"), selectedImage: UIImage(named: "clock"))
+    detailCheckVC.tabBarItem = UITabBarItem(title: "전체", image: UIImage(named: "calendar"), selectedImage: UIImage(named: "calendar"))
+    tabBarController.viewControllers = [checkNavi, detailCheckNavi]
+    
+    navigationController?.pushViewController(tabBarController, animated: true)
   }
   
   //settingButton 누를 시 action Sheet

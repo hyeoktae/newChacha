@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		523CC80F22C503FB00015784 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523CC80E22C503FB00015784 /* AppDelegate.swift */; };
-		523CC81622C503FC00015784 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 523CC81522C503FC00015784 /* Assets.xcassets */; };
 		523CC81922C503FC00015784 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 523CC81722C503FC00015784 /* LaunchScreen.storyboard */; };
 		5246892A22C509DF002CF751 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246892922C509DF002CF751 /* MainVC.swift */; };
 		5246892C22C509EB002CF751 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246892B22C509EB002CF751 /* RegisterVC.swift */; };
@@ -36,6 +35,7 @@
 		CF3FA7D622C524250043069D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3FA7D522C524250043069D /* CalendarView.swift */; };
 		CF3FA7D822C5243D0043069D /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3FA7D722C5243D0043069D /* MonthView.swift */; };
 		CF3FA7DA22C524570043069D /* WeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3FA7D922C524570043069D /* WeekdaysView.swift */; };
+		E6762B7D22C5BD4900F9608B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6762B7C22C5BD4900F9608B /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +43,6 @@
 		1B5D459127267DAF464C74AF /* Pods-chacha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chacha.debug.xcconfig"; path = "Target Support Files/Pods-chacha/Pods-chacha.debug.xcconfig"; sourceTree = "<group>"; };
 		523CC80B22C503FB00015784 /* chacha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chacha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		523CC80E22C503FB00015784 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		523CC81522C503FC00015784 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		523CC81822C503FC00015784 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		523CC81A22C503FC00015784 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5246892922C509DF002CF751 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -72,6 +71,7 @@
 		CF3FA7D522C524250043069D /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		CF3FA7D722C5243D0043069D /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 		CF3FA7D922C524570043069D /* WeekdaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysView.swift; sourceTree = "<group>"; };
+		E6762B7C22C5BD4900F9608B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +89,7 @@
 		35F7B5C9FA7DD09212A8AC42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E6762B7C22C5BD4900F9608B /* Assets.xcassets */,
 				7D497AEF4FEDCCB71B4628BA /* Pods_chacha.framework */,
 			);
 			name = Frameworks;
@@ -124,7 +125,6 @@
 				5246892422C509B4002CF751 /* Network */,
 				5246892322C509AE002CF751 /* View */,
 				5246892222C509A8002CF751 /* Controller */,
-				523CC81522C503FC00015784 /* Assets.xcassets */,
 				523CC81722C503FC00015784 /* LaunchScreen.storyboard */,
 				523CC81A22C503FC00015784 /* Info.plist */,
 				5246894F22C50B22002CF751 /* GoogleService-Info.plist */,
@@ -287,7 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				523CC81922C503FC00015784 /* LaunchScreen.storyboard in Resources */,
-				523CC81622C503FC00015784 /* Assets.xcassets in Resources */,
+				E6762B7D22C5BD4900F9608B /* Assets.xcassets in Resources */,
 				5246895022C50B22002CF751 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
