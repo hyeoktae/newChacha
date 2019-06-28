@@ -112,21 +112,22 @@ final class Firebase {
     }
   }
   
-  func getSchoolList(completion: @escaping ([SchoolList]) -> ()) {
-    var resultData = [SchoolList]()
+  func getSchoolList(completion: @escaping ([StudentList]) -> ()) {
+    var resultData = [StudentList]()
     db.collection("school").getDocuments { (snap, err) in
       guard err == nil else { return }
       guard let documents = snap?.documents else { return }
       for document in documents {
         guard let data = document.data() as? [String: String] else { continue }
         
-        let fds = data["fds"] ?? ""
-        let iOS = data["iOS"] ?? ""
-        let wds = data["wds"] ?? ""
+        let fds = data["fds"] ?? "123"
+        let iOS = data["iOS"] ?? "123"
+        let wps = data["wps"] ?? "123"
         
-        resultData.append(SchoolList(school: fds))
-        resultData.append(SchoolList(school: iOS))
-        resultData.append(SchoolList(school: wds))
+        resultData.append(StudentList(name: fds, school: "", isAdmin: "", uuid: "", add: ""))
+        resultData.append(StudentList(name: iOS, school: "", isAdmin: "", uuid: "", add: ""))
+        resultData.append(StudentList(name: wps, school: "", isAdmin: "", uuid: "", add: ""))
+
       }
       completion(resultData)
     }

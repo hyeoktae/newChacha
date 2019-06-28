@@ -48,7 +48,12 @@ extension AdminVC: AdminViewDelegate {
     
     if sender.tag == 0 {
       detailAdminVC.title = "스쿨관리"
-      
+      Firebase.shared.getSchoolList() {
+        let data = $0.filter { !$0.name.isEmpty }
+        print("[Log11] :", $0)
+        detailAdminVC.cellArr = data
+        detailAdminVC.adminState = false
+      }
     } else if sender.tag == 1 {
       detailAdminVC.title = "학생관리"
       Firebase.shared.getStudentList(){
@@ -64,5 +69,8 @@ extension AdminVC: AdminViewDelegate {
         detailAdminVC.adminState = true
       }
     }
+
+    let detailAdminNavi = UINavigationController(rootViewController: detailAdminVC)
+    present(detailAdminNavi, animated: true)
   }
 }
