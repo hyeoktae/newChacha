@@ -10,7 +10,6 @@ import Foundation
 import Firebase
 import CoreLocation
 
-
 final class Firebase {
   static let shared = Firebase()
   
@@ -96,7 +95,8 @@ final class Firebase {
       "School": school,
       "state": stateString
       ])) {
-        guard $0 != nil else { return }
+        guard $0 == nil else { return }
+        debugPrint("여기 작동함 \n")
         completion()
     }
   }

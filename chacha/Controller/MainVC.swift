@@ -18,7 +18,7 @@ final class MainVC: UIViewController {
   private let mainView = MainView()
   
   private let registerVC = RegisterVC()
-  private let checkVC = CheckVC()
+//  private let checkVC = CheckVC()
   private let detailCheckVC = DetailCheckVC()
   private let adminVC = AdminVC()
   
@@ -78,6 +78,7 @@ extension MainVC: MainViewDelegate {
   //attendButton 누를 시 CheckVC로 이동
   func attendCheck() {
     print("didTapAttendButtonDelegate")
+    let checkVC = CheckVC()
     let tabBarController = UITabBarController()
     checkVC.tabBarItem = UITabBarItem(title: "오늘", image: nil, selectedImage: nil)
     detailCheckVC.tabBarItem = UITabBarItem(title: "전체", image: nil, selectedImage: nil)

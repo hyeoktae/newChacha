@@ -18,8 +18,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   var locationManager = CLLocationManager()
   // 이부분 다운로드 하는방향으로 바꿔야함
   let uuid = UUID(uuidString: "FDA50693-A4E2-4FB1-AFCF-C6EB07647825")!
+  
   // 여기도 다운로드 끝나고 위에꺼에 옵져버 달아서 그때그때 바꿔줘야할듯 인나서 해야징
-  lazy var beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "iBeacon")
+//  lazy var beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "iBeacon")
+  lazy var beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: 2000, identifier: "iBeacon")
   // 이건 차차가 할꺼야
   var baseUUID: String? {
     return UserDefaults.standard.string(forKey: "uuid")

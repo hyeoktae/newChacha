@@ -39,16 +39,18 @@ final class todayCheck {
     checkToday(result.1)
     stateArr.append(result.0)
     todayArr.append(result.1)
-    
+    print("before@@@@@@@@@@@")
     guard let uuid = UserDefaults.standard.string(forKey: "uuid"),
       let name = UserDefaults.standard.string(forKey: "name"),
       let school = UserDefaults.standard.string(forKey: "school") else {
         return
     }
-    
+    print("ater@@@@@@@@@@@")
     Firebase.shared.registerCheck(uuid: uuid, name: name, school: school, state: stateArr.first!, today: todayArr.first!) {
       completion(self.stateArr.first!)
+      print("ater222222@@@@@@@@@@@")
     }
+    
   }
   
   private func checkToday(_ today: String) {
