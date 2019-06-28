@@ -82,7 +82,7 @@ extension RegisterVC: RegisterViewDelegate {
       
       shared.addStudent(name: name, uuid: uuid, address: address, school: school)
       
-//      guard let vc = presentingViewController as?   else {return}
+//      guard let vc = presentingViewController as?  else {return}
       
 //      vc.mainView = MainView()
       
