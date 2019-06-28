@@ -22,10 +22,24 @@ struct ForCheckModel {
   var imgName: String
 }
 
+struct StudentList {
+  var name: String
+  var school: String
+  var isAdmin: String?
+  var uuid: String
+  var add: String
+}
+
 class ForCheck {
   static let shared = ForCheck()
   
   var amICheck = ForCheckModel(text: "출석체크 아직 안함", imgName: "cancel")
+}
+
+struct dataModelForAdmin {
+  var name: String
+  var school: String
+  var isAdmin: String?
 }
 
 final class todayCheck {

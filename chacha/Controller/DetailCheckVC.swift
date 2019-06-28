@@ -14,6 +14,13 @@ enum MyTheme {
 
 class DetailCheckVC: UIViewController {
   
+  let attendView: UIImageView = {
+    let v = UIImageView()
+    v.image = UIImage(named: "calendar1")
+    v.translatesAutoresizingMaskIntoConstraints = false
+    return v
+  }()
+  
   let calenderView: CalendarView = {
     let v = CalendarView(theme: MyTheme.light)
     v.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +29,6 @@ class DetailCheckVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "나의 출결"
     
     let shared = Firebase.shared
     let shared2 = Fury.shared
@@ -40,11 +46,18 @@ class DetailCheckVC: UIViewController {
     }
     
     let guide = view.safeAreaLayoutGuide
+    
+    view.addSubview(attendView)
+    attendView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+    attendView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+    attendView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+    attendView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.4).isActive = true
+    
     view.addSubview(calenderView)
-    calenderView.topAnchor.constraint(equalTo: guide.topAnchor, constant: 10).isActive = true
+    calenderView.topAnchor.constraint(equalTo: attendView.bottomAnchor, constant: 10).isActive = true
     calenderView.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 12).isActive = true
     calenderView.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -12).isActive = true
-    calenderView.heightAnchor.constraint(equalToConstant: 500).isActive = true
+    calenderView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
   }
   
   override func viewWillLayoutSubviews() {
