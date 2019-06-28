@@ -98,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				523CC80D22C503FB00015784 /* chacha */,
+				E6762B7C22C5BD4900F9608B /* Assets.xcassets */,
 				523CC80C22C503FB00015784 /* Products */,
 				C6628D0A8638DB1DD184B9C6 /* Pods */,
 				35F7B5C9FA7DD09212A8AC42 /* Frameworks */,

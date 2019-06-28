@@ -23,22 +23,29 @@ final class MainView: UIView {
   
   // MARK: - Properties
  
-  let myName: String = {
+  var myName: String = {
     let temp = UserDefaults.standard.string(forKey: "name") ?? ""
     
     return temp
-  }()
+  }() {
+    willSet {
+      nameLable.text = newValue
+    }
+  }
   
-  let mySchool: String = {
+  var mySchool: String = {
     let temp = UserDefaults.standard.string(forKey: "school") ?? ""
     
     return temp
-  }()
+  }() {
+    willSet {
+      schoolLabel.text = newValue
+    }
+  }
   
   private lazy var nameLable: UILabel = {
     let label = UILabel()
     label.text = "\(myName)님 안녕하세요."
-    label.backgroundColor = .yellow
     label.font = UIFont.systemFont(ofSize: 40, weight: .ultraLight)
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
@@ -47,7 +54,6 @@ final class MainView: UIView {
   private lazy var schoolLabel: UILabel = {
     let label = UILabel()
     label.text = "\(mySchool),"
-    label.backgroundColor = .gray
     label.font = UIFont.systemFont(ofSize: 20, weight: .ultraLight)
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
@@ -80,7 +86,6 @@ final class MainView: UIView {
 //    let fontSize = UIFont.boldSystemFont(ofSize: 30)
 //    let attributedStr = NSMutableAttributedString(string: myName)
 //    attributedStr.addAttribute(kCTFontAttributeName as String, value: fontSize, range: (text as NSString).range(of: "님"))
-    
   }
   
   private func setupMainView() {
