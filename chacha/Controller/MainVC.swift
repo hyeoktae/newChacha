@@ -15,7 +15,7 @@ final class MainVC: UIViewController {
   // private 안됨 appdelegate에서 사용
   var myUUID = UserDefaults.standard.string(forKey: "uuid")
   
-  private let mainView = MainView()
+  var mainView = MainView()
   
   private let registerVC = RegisterVC()
 //  private let checkVC = CheckVC()
