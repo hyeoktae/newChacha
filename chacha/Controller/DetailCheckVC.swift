@@ -20,10 +20,21 @@ class DetailCheckVC: UIViewController {
     return v
   }()
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     let shared = Firebase.shared
-    shared.getAttension(date: "", uuid: "")
+    let shared2 = Fury.shared
+    shared.getAttension(date: "", uuid: "") { (result) in
+      shared2.monthStateArr = result
+      print("[Log3] :", shared2.monthStateArr)
+      DispatchQueue.main.async {
+        self.calenderView.myCollectionView.reloadData()
+      }
+    }
     
     let guide = view.safeAreaLayoutGuide
     view.addSubview(calenderView)

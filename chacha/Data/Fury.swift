@@ -11,5 +11,5 @@ import Foundation
 final class Fury {
   static let shared = Fury()
   
-  var monthStateArr = [String: [String]]()
+  var monthStateArr = [String: [String: String]]()
 }
