@@ -10,23 +10,15 @@ import UIKit
 
 class TopCheckView: UIView {
   
-  var myName: String = {
-    let temp = UserDefaults.standard.string(forKey: "name") ?? ""
-    
-    return temp
-    }() {
+  var myName: String = "" {
     willSet {
-      nameLable.text = newValue
+      nameLable.text = "\(newValue)님 안녕하세요."
     }
   }
   
-  var mySchool: String = {
-    let temp = UserDefaults.standard.string(forKey: "school") ?? ""
-    
-    return temp
-    }() {
+  var mySchool: String = "" {
     willSet {
-      schoolLabel.text = newValue
+      schoolLabel.text = "\(newValue) 스쿨,"
     }
   }
   
@@ -46,7 +38,7 @@ class TopCheckView: UIView {
   
   private lazy var nameLable: UILabel = {
     let label = UILabel()
-    label.text = "\(myName)님 안녕하세요."
+//    label.text = "\(myName)님 안녕하세요."
     label.textColor = .white
     label.font = UIFont.systemFont(ofSize: 40, weight: .ultraLight)
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +47,7 @@ class TopCheckView: UIView {
   
   private lazy var schoolLabel: UILabel = {
     let label = UILabel()
-    label.text = "\(mySchool) 스쿨,"
+//    label.text = "\(mySchool) 스쿨,"
     label.textColor = .white
     label.font = UIFont.systemFont(ofSize: 20, weight: .light)
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +60,10 @@ class TopCheckView: UIView {
     setupTopCheckView()
   }
   
-  private func setupTopCheckView() {
+  func setupTopCheckView() {
+    myName = UserDefaults.standard.string(forKey: "name") ?? ""
+    mySchool = UserDefaults.standard.string(forKey: "school") ?? ""
+    
     addSubview(imageView)
     imageView.addSubview(view)
     

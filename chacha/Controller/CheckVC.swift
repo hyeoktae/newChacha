@@ -29,6 +29,12 @@ class CheckVC: UIViewController {
     print("checkVC_uuid: ", myUUID)
     
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    topCheckView.setupTopCheckView()
+  }
+  
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     //학생인지 관리자인지 체크
