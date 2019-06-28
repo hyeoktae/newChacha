@@ -23,6 +23,7 @@ class CheckView: UIView {
     let imageView = UIButton()
     imageView.contentMode = .scaleAspectFit
     imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.backgroundColor = .orange
     imageView.addTarget(self, action: #selector(didTapStateImageView(_:)), for: .touchUpInside)
     return imageView
   }()
@@ -52,10 +53,12 @@ class CheckView: UIView {
   override func layoutSubviews() {
     super.layoutSubviews()
     
-    stateImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-    stateImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-    stateImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-    stateImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+    
+    
+    stateImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+    stateImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+    stateImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+    stateImageView.bottomAnchor.constraint(equalTo: stateLabel.topAnchor).isActive = true
     
     stateLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
     stateLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true

@@ -56,11 +56,14 @@ class CheckVC: UIViewController {
     let guide = view.safeAreaLayoutGuide
     
     topCheckView.translatesAutoresizingMaskIntoConstraints = false
-    topCheckView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-    
-    
-    
+    topCheckView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+    topCheckView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+    topCheckView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+    topCheckView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.4).isActive = true
+  
     checkView.translatesAutoresizingMaskIntoConstraints = false
+    checkView.topAnchor.constraint(equalTo: topCheckView.bottomAnchor, constant: 100).isActive = true
+    checkView.centerXAnchor.constraint(equalTo: guide.centerXAnchor).isActive = true
     checkView.widthAnchor.constraint(equalTo: guide.widthAnchor, multiplier: 0.8).isActive = true
     checkView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.3).isActive = true
   }
