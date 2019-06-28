@@ -11,6 +11,7 @@ import UIKit
 class AdminVC: UIViewController {
   
   let adminView = AdminView()
+  let detailAdminVC = DetailAdminVC()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,12 +36,26 @@ class AdminVC: UIViewController {
 
 
 extension AdminVC: AdminViewDelegate {
+  func didTapStudentList() {
+    Firebase.shared.getStudentList(){
+      let data = $0.filter { $0.isAdmin == "0" }
+      self.detailAdminVC.cellArr = data
+      self.present(self.detailAdminVC, animated: true)
+    }
+  }
+  
   func moveToAddBeaconVC() {
     present(AddBeaconVC(), animated: true)
   }
   
   func getAdminTableView() {
-    present(DetailAdminVC(), animated: true)
+    Firebase.shared.getStudentList(){
+      let data = $0.filter { $0.isAdmin == "0" }
+      self.detailAdminVC.cellArr = data
+      self.detailAdminVC.adminState = true
+      self.present(self.detailAdminVC, animated: true)
+    }
+    
   }
   
   

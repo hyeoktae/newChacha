@@ -112,6 +112,45 @@ final class Firebase {
     }
   }
   
+  func getStudentList(completion: @escaping ([StudentList]) -> ()) {
+    var resultData = [StudentList]()
+    db.collection("student").getDocuments { (snap, err) in
+      guard err == nil else { return }
+      guard let documents = snap?.documents else { return }
+      for document in documents {
+        guard let data = document.data() as? [String: String] else { continue }
+        
+        let name = data["name"] ?? "전혜지"
+        let school = data["school"] ?? "iOS"
+        let isAdmin = data["isAdmin"] ?? "0"
+        let uuid = data["uuid"] ?? "nil"
+        let add = data["address"] ?? "노원"
+        
+        resultData.append(StudentList(name: name, school: school, isAdmin: isAdmin, uuid: uuid, add: add))
+      }
+      completion(resultData)
+    }
+  }
+  
+  func setAdmin(data: StudentList) {
+    let uuid = data.uuid
+    let name = data.name
+    let add = data.add
+    let school = data.school
+    let isAdmin = data.isAdmin
+    
+    db.collection("student").document(uuid).setData([
+      "name": name,
+      "uuid": uuid,
+      "address": add,
+      "school": school,
+      "isAdmin": isAdmin!
+    ]) { (err) in
+      guard err == nil else { return }
+      print("set admin complete")
+    }
+  }
+  
   // Student 추가
   func addStudent(name: String, uuid: String, address: String?, school: String) {
     db.collection("student").document(uuid).setData([
@@ -119,7 +158,7 @@ final class Firebase {
       "uuid": uuid,
       "address": address ?? "",
       "school": school,
-      "isAdmin": false
+      "isAdmin": "0"
     ]) { err in
       if let err = err {
         print("Error writing document: \(err)")

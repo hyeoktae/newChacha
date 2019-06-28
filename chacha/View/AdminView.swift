@@ -12,6 +12,7 @@ protocol AdminViewDelegate: class {
   //스쿨관리 버튼 누를시 실행할 메소드
   func getAdminTableView()
   func moveToAddBeaconVC()
+  func didTapStudentList()
 }
 
 
@@ -32,7 +33,7 @@ class AdminView: UIView {
   private let schoolButton: UIButton = {
     let button = UIButton(type: .system)
     button.backgroundColor = .red
-    button.setTitle("스쿨관리", for: .normal)
+    button.setTitle("스쿨리스트", for: .normal)
     button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .ultraLight)
     button.tintColor = .black
     button.addTarget(self, action: #selector(didTapAdminButton(_:)), for: .touchUpInside)
@@ -43,10 +44,10 @@ class AdminView: UIView {
   private let studentButton: UIButton = {
     let button = UIButton(type: .system)
     button.backgroundColor = .orange
-    button.setTitle("학생관리", for: .normal)
+    button.setTitle("학생리스트", for: .normal)
     button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .ultraLight)
     button.tintColor = .black
-    button.addTarget(self, action: #selector(didTapAdminButton(_:)), for: .touchUpInside)
+    button.addTarget(self, action: #selector(didTapStudent(_:)), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return button
   }()
@@ -54,7 +55,7 @@ class AdminView: UIView {
   private let adminButton: UIButton = {
     let button = UIButton(type: .system)
     button.backgroundColor = .yellow
-    button.setTitle("관리자관리", for: .normal)
+    button.setTitle("관리자등록", for: .normal)
     button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .ultraLight)
     button.tintColor = .black
     button.addTarget(self, action: #selector(didTapAdminButton(_:)), for: .touchUpInside)
@@ -125,6 +126,10 @@ class AdminView: UIView {
   
   @objc private func didTapAdminButton(_ sender: UIButton) {
     delegate?.getAdminTableView()
+  }
+  
+  @objc private func didTapStudent(_ sender: UIButton) {
+    delegate?.didTapStudentList()
   }
   
   @objc private func didTapBeaconButton(_ sender: UIButton) {

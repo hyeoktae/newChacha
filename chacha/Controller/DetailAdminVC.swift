@@ -10,6 +10,18 @@ import UIKit
 
 class DetailAdminVC: UIViewController {
   
+  var adminState = false
+  
+  var cellArr = [StudentList]() {
+    willSet{
+      tableView.dataSource = nil
+      tableView.delegate = nil
+      tableView.reloadData()
+      tableView.dataSource = self
+      tableView.delegate = self
+    }
+  }
+  
   private let reloadBtn: UIButton = {
     let btn = UIButton(type: .system)
     btn.translatesAutoresizingMaskIntoConstraints = false
@@ -33,6 +45,10 @@ class DetailAdminVC: UIViewController {
   private lazy var tableView: UITableView = {
     let tableView = UITableView()
     tableView.translatesAutoresizingMaskIntoConstraints = false
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    tableView.rowHeight = 100
+    tableView.dataSource = self
+    tableView.delegate = self
     return tableView
   }()
   
@@ -69,12 +85,43 @@ class DetailAdminVC: UIViewController {
   }
 }
 
-//extension DetailAdminVC: UITableViewDataSource {
-//  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    ()
-//  }
-//  
-//  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//    ()
-//  }
-//}
+extension DetailAdminVC: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return cellArr.count
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    var cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+    cell = UITableViewCell.init(style: .subtitle, reuseIdentifier: "cell")
+    cell.textLabel?.text = cellArr[indexPath.row].name
+    cell.detailTextLabel?.text = cellArr[indexPath.row].school
+    return cell
+  }
+}
+
+extension DetailAdminVC: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    print(adminState)
+    guard adminState else { return nil }
+    return indexPath
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    alertController(cellArr[indexPath.row].name, idx: indexPath.row)
+  }
+  
+  private func alertController(_ name: String, idx: Int) {
+    let alert = UIAlertController(title: "등록", message: "\(name)님을 관리자로 등록 하겠습니까?", preferredStyle: .alert)
+    let addressChange = UIAlertAction(title: "예", style: .default) { _ in
+      let oldData = self.cellArr[idx]
+      let newData = StudentList(name: oldData.name, school: oldData.school, isAdmin: "1", uuid: oldData.uuid, add: oldData.add)
+      Firebase.shared.setAdmin(data: newData)
+    }
+    let cancel = UIAlertAction(title: "취소", style: .cancel)
+    
+    alert.addAction(addressChange)
+    alert.addAction(cancel)
+    present(alert, animated: true)
+  }
+  
+}
