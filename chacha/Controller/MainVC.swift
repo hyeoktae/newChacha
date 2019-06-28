@@ -77,13 +77,8 @@ final class MainVC: UIViewController {
 extension MainVC: MainViewDelegate {
   //attendButton 누를 시 CheckVC로 이동
   func attendCheck() {
-<<<<<<< HEAD
-    let checkVC = CheckVC()
-
-=======
     print("didTapAttendButtonDelegate")
     let checkVC = CheckVC()
->>>>>>> abdb412b570378e63e8dd47fd4d71944d31210bf
     let tabBarController = UITabBarController()
     let checkNavi = UINavigationController(rootViewController: checkVC)
     let detailCheckNavi = UINavigationController(rootViewController: detailCheckVC)
