@@ -187,18 +187,14 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
         cell.lbl.textColor = Style.activeCellLblColor
       }
       
-      
-      
       // 현재 요일 미만만 확인
       if indexPath.row < todayCount + todaysDate {
         let monthIndex = String(format: "%02d", currentMonthIndex)
-        
-        print("[Log4] : ", shared.monthStateArr)
-        print("[Log4] : month", monthIndex)
+        let dayIndex = String(format: "%02d", Int(cell.lbl.text!)!)
         
         if shared.monthStateArr.keys.contains("\(currentYear)-\(monthIndex)") {
-          if (shared.monthStateArr["\(currentYear)-\(monthIndex)"]?.keys.contains("\(cell.lbl.text!)"))! {
-            let state = shared.monthStateArr["\(currentYear)-\(monthIndex)"]?["\(cell.lbl.text!)"]
+          if (shared.monthStateArr["\(currentYear)-\(monthIndex)"]?.keys.contains(dayIndex))! {
+            let state = shared.monthStateArr["\(currentYear)-\(monthIndex)"]?[dayIndex]
             if state == "출석" {
               cell.lbl.backgroundColor = .green
             } else if state == "지각" {
@@ -211,8 +207,6 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
           cell.lbl.backgroundColor = .clear
         }
       }
-      
-      
     }
     
     return cell
@@ -258,6 +252,21 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
   func getFirstWeekDay() -> Int {
     let day = ("\(currentYear)-\(currentMonthIndex)-01".date?.firstDayOfTheMonth.weekday)!
     return day
+  }
+  
+  func collectionReloadData() {
+    let shared = Firebase.shared
+    let shared2 = Fury.shared
+    let monthIndex = String(format: "%02d", currentMonthIndex)
+    let date = "\(currentYear)-\(monthIndex)"
+    let userDefaults = UserDefaults.standard
+    let uuid = userDefaults.value(forKey: "uuid") as! String
+    shared.getAttension(date: date, uuid: uuid) { (result) in
+      shared2.monthStateArr = result
+      DispatchQueue.main.async {
+        self.myCollectionView.reloadData()
+      }
+    }
   }
   
   func didChangeMonth(monthIndex: Int, year: Int) {

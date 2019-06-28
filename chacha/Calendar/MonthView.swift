@@ -10,6 +10,7 @@ import UIKit
 
 protocol MonthViewDelegate: class {
   func didChangeMonth(monthIndex: Int, year: Int)
+  func collectionReloadData()
 }
 
 class MonthView: UIView {
@@ -80,8 +81,7 @@ class MonthView: UIView {
     } else {
       currentMonthString = "\(currentMonthIndex + 1)"
     }
-    print("[Log2] date : \(currentYear)-\(currentMonthString)")
-    
+    delegate?.collectionReloadData()
     lblName.text = "\(monthsArr[currentMonthIndex]) \(currentYear)"
     delegate?.didChangeMonth(monthIndex: currentMonthIndex, year: currentYear)
     
