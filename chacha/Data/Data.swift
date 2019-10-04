@@ -81,7 +81,7 @@ final class todayCheck {
     let timeFormatter = DateFormatter()
     let dateFormatter = DateFormatter()
     // 출근해야하는 시간
-    let safeDateString: String = "10:00:00"
+    let safeDateString: String = "20:00:00"
     
     dateFormatter.dateFormat = "yyyy-MM-dd"
     

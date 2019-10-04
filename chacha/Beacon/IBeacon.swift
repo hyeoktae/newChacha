@@ -136,27 +136,41 @@ extension AppDelegate: CLLocationManagerDelegate {
     //    print("beacon 탐지중")
     
     //    print("@@@비콘의 범위 탐지함@@@", IBeacon.shared.nearBeacons)
-    //    for beacon in beacons {
-    //      if beacon.proximityUUID == uuid {
-    //        switch beacon.proximity {
-    //        case .immediate:
-    //          // 매우 근접
-    //          ()
-    //        case .near:
-    //          // 근접
-    //          ()
-    //        case .far:
-    //          // 멀어짐
-    //          ()
-    //        case .unknown:
-    //          // 탐지 불가
-    //          ()
-    //        @unknown default:
-    //          // 예상외 오류
-    //          ()
-    //        }
-    //      }
-    //    }
+        for beacon in beacons {
+          if beacon.proximityUUID == uuid {
+            switch beacon.proximity {
+            case .immediate:
+              print("immediate")
+              ()
+            case .near:
+              // 근접
+              print("near")
+              todayCheck.shared.checkState() {
+                switch $0 {
+                case .check:
+                  ForCheck.shared.amICheck = ForCheckModel(text: "출석 완료", imgName: "check")
+                  print("state.inside: ", "check")
+                case .late:
+                  ForCheck.shared.amICheck = ForCheckModel(text: "지각해땅 ㅜㅜ", imgName: "late")
+                  print("state.inside: ", "late")
+                case .none:
+                  ForCheck.shared.amICheck = ForCheckModel(text: "출첵 안함", imgName: "cancel")
+                  print("state.inside: ", "cancel")
+                }
+              }
+            case .far:
+              print("far")
+              ()
+            case .unknown:
+              // 탐지 불가
+              print("unknown")
+              ()
+            @unknown default:
+              // 예상외 오류
+              ()
+            }
+          }
+        }
   }
   
   
