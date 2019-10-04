@@ -12,7 +12,7 @@ for Hackathon
 
 - 소속 : 패캠 해커톤
 
-- 역할 : 팀장, 비콘
+- 역할 : 팀장, iOS개발
 
 - 사용기술 : Swift, iBeacon
 
